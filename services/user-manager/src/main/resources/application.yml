@@ -1,0 +1,9 @@
+server:
+  port: 8092
+  servlet:
+    context-path: /sinthoma/user-manager
+    
+spring:
+  data:
+    mongodb:
+      uri: mongodb://mongo:8090/sinthoma

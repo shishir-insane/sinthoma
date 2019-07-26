@@ -13,7 +13,7 @@
  * work may be distributed under different terms and without source code for 
  * the larger work.
  */
-package cok.sk.sinthoma.bff.user.controller;
+package cok.sk.sinthoma.bff.controller;
 
 import java.security.Principal;
 import java.util.Base64;

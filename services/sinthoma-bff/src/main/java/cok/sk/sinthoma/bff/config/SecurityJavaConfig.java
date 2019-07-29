@@ -15,7 +15,6 @@
  */
 package cok.sk.sinthoma.bff.config;
 
-import org.apache.catalina.filters.CorsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,26 +24,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.access.channel.ChannelProcessingFilter;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import cok.sk.sinthoma.bff.user.security.RestAuthenticationEntryPoint;
-import cok.sk.sinthoma.bff.user.security.SinthomaAuthSuccessHandler;
+import cok.sk.sinthoma.bff.user.security.LoggingAccessDeniedHandler;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
-
+    
     @Autowired
-    private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
-
-    @Autowired
-    private SinthomaAuthSuccessHandler sinthomaAuthSuccessHandler;
-
-    @Bean
-    public SimpleUrlAuthenticationFailureHandler simpleUrlAuthenticationFailureHandler() {
-	return new SimpleUrlAuthenticationFailureHandler();
-    }
+    private LoggingAccessDeniedHandler accessDeniedHandler;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -70,19 +59,45 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
 //    }
     
   //  @Override
-    protected void configure123(HttpSecurity httpSecurity) throws Exception {
-	httpSecurity.addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class);
-	httpSecurity.csrf().disable()
-		.exceptionHandling()
-		.authenticationEntryPoint(restAuthenticationEntryPoint)
-		.and()
-		.authorizeRequests()
-		.antMatchers("/api/foos").authenticated()
-		.antMatchers("/api/admin/**").hasRole("ADMIN")
-		.and()
-		.formLogin().successHandler(sinthomaAuthSuccessHandler)
-		.failureHandler(simpleUrlAuthenticationFailureHandler())
-		.and()
-		.logout();
+//    protected void configure123(HttpSecurity httpSecurity) throws Exception {
+//	httpSecurity.addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class);
+//	httpSecurity.csrf().disable()
+//		.exceptionHandling()
+//		.authenticationEntryPoint(restAuthenticationEntryPoint)
+//		.and()
+//		.authorizeRequests()
+//		.antMatchers("/api/foos").authenticated()
+//		.antMatchers("/api/admin/**").hasRole("ADMIN")
+//		.and()
+//		.formLogin().successHandler(sinthomaAuthSuccessHandler)
+//		.failureHandler(simpleUrlAuthenticationFailureHandler())
+//		.and()
+//		.logout();
+//    }
+    
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                    .antMatchers(
+                            "/",
+                            "/static/assets/**",
+                            "/webjars/**").permitAll()
+                    .antMatchers("/user/**").hasRole("USER")
+                    .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                    .loginPage("/login")
+                    .permitAll()
+                .and()
+                .logout()
+                    .invalidateHttpSession(true)
+                    .clearAuthentication(true)
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutSuccessUrl("/login?logout")
+                    .permitAll()
+                .and()
+                .exceptionHandling()
+                    .accessDeniedHandler(accessDeniedHandler);
     }
 }

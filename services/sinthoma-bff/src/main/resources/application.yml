@@ -19,4 +19,4 @@ logging:
     root: INFO
     com.sk.sinthoma: DEBUG
     org.springframework.web: INFO
-    org.springframework.security: DEBUG
+    org.springframework.security: INFO

@@ -62,7 +62,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/images/**",
                             "/fonts/**",
                             "/webjars/**").permitAll()
-                    .antMatchers("/user/**").hasRole("USER")
+                    .antMatchers("/").hasRole("USER")
                     .anyRequest().authenticated()
                 .and()
                 .formLogin()

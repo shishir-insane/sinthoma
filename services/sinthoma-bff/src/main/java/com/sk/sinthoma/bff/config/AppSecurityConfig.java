@@ -13,7 +13,7 @@
  * work may be distributed under different terms and without source code for
  * the larger work.
  */
-package cok.sk.sinthoma.bff.config;
+package com.sk.sinthoma.bff.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -26,19 +26,25 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import cok.sk.sinthoma.bff.user.security.LoggingAccessDeniedHandler;
+import com.sk.sinthoma.bff.user.security.LoggingAccessDeniedHandler;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
+public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Autowired
     private LoggingAccessDeniedHandler accessDeniedHandler;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-	auth.inMemoryAuthentication().withUser("admin").password(encoder().encode("adminPass")).roles("ADMIN").and()
-		.withUser("user").password(encoder().encode("userPass")).roles("USER");
+	auth.inMemoryAuthentication()
+		.withUser("admin")
+			.password(encoder().encode("adminPass"))
+			.roles("ADMIN")
+		.and()
+		.withUser("user")
+			.password(encoder().encode("userPass"))
+			.roles("USER");
     }
 
     @Bean
@@ -46,42 +52,15 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
 	return new BCryptPasswordEncoder();
     }
 
-//    @Override
-//    protected void configure(HttpSecurity http) 
-//      throws Exception {
-//        http.csrf().disable()
-//          .authorizeRequests()
-//          .antMatchers("/user/login").permitAll()
-//          .anyRequest()
-//          .authenticated()
-//          .and()
-//          .httpBasic();
-//    }
-    
-  //  @Override
-//    protected void configure123(HttpSecurity httpSecurity) throws Exception {
-//	httpSecurity.addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class);
-//	httpSecurity.csrf().disable()
-//		.exceptionHandling()
-//		.authenticationEntryPoint(restAuthenticationEntryPoint)
-//		.and()
-//		.authorizeRequests()
-//		.antMatchers("/api/foos").authenticated()
-//		.antMatchers("/api/admin/**").hasRole("ADMIN")
-//		.and()
-//		.formLogin().successHandler(sinthomaAuthSuccessHandler)
-//		.failureHandler(simpleUrlAuthenticationFailureHandler())
-//		.and()
-//		.logout();
-//    }
-    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                     .antMatchers(
-                            "/",
-                            "/static/assets/**",
+                            "/css/**",
+                            "/js/**",
+                            "/images/**",
+                            "/fonts/**",
                             "/webjars/**").permitAll()
                     .antMatchers("/user/**").hasRole("USER")
                     .anyRequest().authenticated()
@@ -98,6 +77,9 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                 .and()
                 .exceptionHandling()
-                    .accessDeniedHandler(accessDeniedHandler);
+                    .accessDeniedHandler(accessDeniedHandler)
+                .and()
+                .csrf()
+                    .disable();
     }
 }

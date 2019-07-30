@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<!--
+    =========================================================
+    * ArchitectUI HTML Theme Dashboard - v1.0.0
+    =========================================================
+    * Product Page: https://dashboardpack.com
+    * Copyright 2019 DashboardPack (https://dashboardpack.com)
+    * Licensed under MIT (https://github.com/DashboardPack/architectui-html-theme-free/blob/master/LICENSE)
+    =========================================================
+    * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+    -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Language" content="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+<meta name="msapplication-tap-highlight" content="no">
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
+<link href="https://fonts.googleapis.com/css?family=Leckerli+One&display=swap" rel="stylesheet">
+
+<title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Sinthoma
+	- Health Tracker</title>
+<style type="text/css">
+.app-header__logo .logo-src {
+    height: 23px;
+    width: 100%;
+    font-family: 'Leckerli One', cursive;
+    text-align: center;
+    font-size: x-large;
+    text-decoration: none;
+}
+</style>
+	
+</head>
+<body>
+	<div
+		class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+		<th:block th:replace="fragments/header-login :: header" />
+		<div class="app-main">
+			<th:block layout:fragment="content" />
+		</div>
+		<th:block th:replace="fragments/footer :: footer" />
+	</div>
+	<script type="text/javascript" th:src="@{/js/main.js}"></script>
+</body>
+</html>

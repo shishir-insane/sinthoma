@@ -13,14 +13,14 @@
  * work may be distributed under different terms and without source code for 
  * the larger work.
  */
-package cok.sk.sinthoma.bff;
+package com.sk.sinthoma.bff;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"cok.sk.sinthoma.bff", "cok.sk.sinthoma.bff.user"})
+@ComponentScan(basePackages = {"com.sk.sinthoma.bff", "com.sk.sinthoma.bff.user"})
 public class SinthomaBffApplication {
 
     public static void main(String[] args) {

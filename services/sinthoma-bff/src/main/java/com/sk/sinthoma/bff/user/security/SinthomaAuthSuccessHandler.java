@@ -13,7 +13,7 @@
  * work may be distributed under different terms and without source code for 
  * the larger work.
  */
-package cok.sk.sinthoma.bff.user.security;
+package com.sk.sinthoma.bff.user.security;
 
 import java.io.IOException;
 

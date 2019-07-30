@@ -29,4 +29,12 @@ services:
         links:
             - mongo
         entrypoint: "java -Djava.security.egd=file:/dev/./urandom -jar /app.jar"
+        
+    sinthoma:
+        image: sinthoma/bff
+        ports:
+            - 8093:8093
+        links:
+            - mongo
+        entrypoint: "java -Djava.security.egd=file:/dev/./urandom -jar /app.jar"
       

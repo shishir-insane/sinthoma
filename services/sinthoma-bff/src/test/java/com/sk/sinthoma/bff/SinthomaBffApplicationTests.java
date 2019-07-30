@@ -1,4 +1,4 @@
-package cok.sk.sinthoma.bff;
+package com.sk.sinthoma.bff;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

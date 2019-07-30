@@ -1,4 +1,4 @@
-package cok.sk.sinthoma.bff.controller;
+package com.sk.sinthoma.bff.controller;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -1,4 +1,4 @@
-package cok.sk.sinthoma.bff.user.security;
+package com.sk.sinthoma.bff.user.security;
 
 import java.io.IOException;
 

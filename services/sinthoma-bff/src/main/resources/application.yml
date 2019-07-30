@@ -9,7 +9,6 @@ spring:
     check-template-location: true
     servlet:
       content-type: text/html
-    content-type: text/html
     enabled: true
     encoding: UTF-8
     mode: HTML
@@ -20,4 +19,4 @@ logging:
     root: INFO
     com.sk.sinthoma: DEBUG
     org.springframework.web: INFO
-    org.springframework.security: INFO
+    org.springframework.security: DEBUG

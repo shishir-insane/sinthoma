@@ -1,4 +1,4 @@
-package cok.sk.sinthoma.symptom;
+package com.sk.sinthoma.symptom;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

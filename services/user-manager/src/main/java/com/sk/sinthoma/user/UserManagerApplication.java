@@ -1,4 +1,4 @@
-package cok.sk.sinthoma.user;
+package com.sk.sinthoma.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,6 +1,9 @@
 FROM openjdk:8-jdk-alpine
-MAINTAINER shishir.insane@gmail.com
 VOLUME /tmp
-ADD target/sinthoma-bff-0.0.1-SNAPSHOT.jar app.jar
+MAINTAINER shishir.insane@gmail.com
+ARG DEPENDENCY=target/dependency
+COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY ${DEPENDENCY}/META-INF /app/META-INF
+COPY ${DEPENDENCY}/BOOT-INF/classes /app
 EXPOSE 8093
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+ENTRYPOINT ["java","-cp","app:app/lib/*","com.sk.sinthoma.bff.SinthomaBffApplication"]

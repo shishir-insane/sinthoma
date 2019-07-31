@@ -1,4 +1,4 @@
-package cok.sk.sinthoma.symptom;
+package com.sk.sinthoma.symptom;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

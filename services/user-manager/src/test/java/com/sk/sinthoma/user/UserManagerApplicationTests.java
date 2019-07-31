@@ -1,4 +1,4 @@
-package cok.sk.sinthoma.user;
+package com.sk.sinthoma.user;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

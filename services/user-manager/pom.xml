@@ -9,7 +9,7 @@
 		<version>2.1.6.RELEASE</version>
 		<relativePath />
 	</parent>
-	<groupId>cok.sk.sinthoma</groupId>
+	<groupId>com.sk.sinthoma</groupId>
 	<artifactId>user-manager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>user-manager</name>
@@ -17,7 +17,8 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		<docker.image.prefix>sinthoma/images</docker.image.prefix>
+		<docker.image.repo>shishirinsane/sinthoma</docker.image.repo>
+		<docker.image.repo>shishirinsane/sinthoma</docker.image.repo>
 		<dockerfile-maven-version>1.4.10</dockerfile-maven-version>
 	</properties>
 
@@ -59,6 +60,28 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack</id>
+						<phase>package</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<version>${project.version}</version>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>dockerfile-maven-plugin</artifactId>
 				<version>${dockerfile-maven-version}</version>
@@ -72,11 +95,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<repository>spotify/foobar</repository>
-					<tag>${project.version}</tag>
-					<buildArgs>
-						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-					</buildArgs>
+					<repository>${docker.image.repo}/${project.artifactId}</repository>
 				</configuration>
 			</plugin>
 		</plugins>

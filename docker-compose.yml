@@ -23,18 +23,21 @@ services:
             VCAP_APP_PORT: 8091
       
     user-manager:
-        image: sinthoma/user-manager
+        image: shishirinsane/sinthoma/user-manager
         ports:
             - 8092:8092
         links:
-            - mongo
-        entrypoint: "java -Djava.security.egd=file:/dev/./urandom -jar /app.jar"
-        
-    sinthoma:
-        image: sinthoma/bff
+            - mongo    
+        build:
+            context: ./
+            dockerfile: Dockerfile
+            
+    sinthoma-bff:
+        image: shishirinsane/sinthoma/sinthoma-bff
         ports:
             - 8093:8093
         links:
-            - mongo
-        entrypoint: "java -Djava.security.egd=file:/dev/./urandom -jar /app.jar"
-      
+            - user-manager    
+        build:
+            context: ./
+            dockerfile: Dockerfile      

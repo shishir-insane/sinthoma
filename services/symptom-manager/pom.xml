@@ -8,7 +8,7 @@
 		<version>2.1.6.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>cok.sk.sinthoma</groupId>
+	<groupId>com.sk.sinthoma</groupId>
 	<artifactId>symptom-manager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>symptom-manager</name>

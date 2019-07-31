@@ -32,8 +32,8 @@ services:
             context: ./
             dockerfile: Dockerfile
             
-    sinthoma-bff:
-        image: shishirinsane/sinthoma/sinthoma-bff
+    sinthoma-web:
+        image: shishirinsane/sinthoma/sinthoma-web
         ports:
             - 8093:8093
         links:

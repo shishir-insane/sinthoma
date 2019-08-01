@@ -5,24 +5,19 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.6.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<groupId>com.sk.sinthoma</groupId>
+		<artifactId>sinthoma-base</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../../</relativePath> 
 	</parent>
 
-	<groupId>com.sk.sinthoma</groupId>
 	<artifactId>sinthoma-web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>sinthoma-web</name>
-	<description>Backend for Frontend for Sinthoma microservices</description>
+	<description>Web Frontend for Sinthoma microservices</description>
 
 	<properties>
-		<java.version>1.8</java.version>
 		<thymeleaf-extras-springsecurity4>3.0.4.RELEASE</thymeleaf-extras-springsecurity4>
 		<thymeleaf-layout-dialect.version>2.4.1</thymeleaf-layout-dialect.version>
-		<docker.image.repo>shishirinsane/sinthoma</docker.image.repo>
-		<dockerfile-maven-version>1.4.10</dockerfile-maven-version>
 	</properties>
 
 	<dependencies>

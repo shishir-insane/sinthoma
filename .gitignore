@@ -26,3 +26,6 @@ hs_err_pid*
 *.eclipse.jdt.core.prefs
 *.eclipse.m2e.core.prefs
 *.classpath
+
+# Maven file
+*/.mvn/*

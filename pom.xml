@@ -10,6 +10,13 @@
 		<version>2.1.6.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
+	
+	<properties>
+		<java.version>1.8</java.version>
+		<docker.image.repo>shishirinsane/sinthoma</docker.image.repo>
+		<dockerfile-maven-version>1.4.10</dockerfile-maven-version>
+	</properties>
+	
 
 	<groupId>com.sk.sinthoma</groupId>
 	<artifactId>sinthoma-base</artifactId>
@@ -20,6 +27,7 @@
 	
 	<modules>
 		<module>web/sinthoma-web</module>
+		<module>bff/sinthoma-bff-base</module>
 		<module>service/sinthoma-service-base</module>
 	</modules>
 

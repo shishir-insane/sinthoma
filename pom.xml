@@ -10,13 +10,16 @@
 		<version>2.1.6.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	
+
 	<properties>
 		<java.version>1.8</java.version>
 		<docker.image.repo>shishirinsane/sinthoma</docker.image.repo>
 		<dockerfile-maven-version>1.4.10</dockerfile-maven-version>
+		<spring-data-releasetrain.version>Lovelace-SR9</spring-data-releasetrain.version>
+		<nl.jqno.equalsverifier.version>3.1.9</nl.jqno.equalsverifier.version>
+		<junit-jupiter-engine.version>5.2.0</junit-jupiter-engine.version>
 	</properties>
-	
+
 
 	<groupId>com.sk.sinthoma</groupId>
 	<artifactId>sinthoma-base</artifactId>
@@ -24,11 +27,38 @@
 	<name>sinthoma-base</name>
 	<description>Base module for Sinthoma components</description>
 	<packaging>pom</packaging>
-	
+
 	<modules>
 		<module>web/sinthoma-web</module>
 		<module>bff/sinthoma-bff-base</module>
 		<module>service/sinthoma-service-base</module>
 	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>nl.jqno.equalsverifier</groupId>
+			<artifactId>equalsverifier</artifactId>
+			<version>${nl.jqno.equalsverifier.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-releasetrain</artifactId>
+				<version>${spring-data-releasetrain.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
+				<version>${junit-jupiter-engine.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 </project>

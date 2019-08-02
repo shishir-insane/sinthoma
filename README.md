@@ -1,6 +1,7 @@
 # sinthoma
 An in-progress comprehensive health and symptom tracker.
 
+[![Build Status](https://travis-ci.com/shishir-insane/sinthoma.svg?branch=master)](https://travis-ci.com/shishir-insane/sinthoma)
 
 ## High Level Component Architecture Diagram
 

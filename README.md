@@ -1,6 +1,7 @@
 # sinthoma
 An in-progress comprehensive health and symptom tracker.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f1cf31c9a98e4e07a1483ce861537d05)](https://app.codacy.com/app/shishir.insane/sinthoma?utm_source=github.com&utm_medium=referral&utm_content=shishir-insane/sinthoma&utm_campaign=Badge_Grade_Settings)
 [![Build Status](https://travis-ci.com/shishir-insane/sinthoma.svg?branch=master)](https://travis-ci.com/shishir-insane/sinthoma)
 
 ## High Level Component Architecture Diagram

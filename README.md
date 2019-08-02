@@ -7,7 +7,15 @@ An in-progress comprehensive health and symptom tracker.
 ![Sinthoma Components](docs/assets/images/Sinthoma-UML.png)
 
 
-### Component Status Summary
+## Low Level Design
+
+
+### Maven Module Design - Current State
+
+![Sinthoma Maven Modules](docs/assets/images/Sinthoma-Maven-Modules.png)
+
+
+## Status Summary
 
 | #  | Layer | Component                  | Status      | Planned | Designed    | Developed   | Tested | Released |
 |----|-------|----------------------------|-------------|---------|-------------|-------------|--------|----------|

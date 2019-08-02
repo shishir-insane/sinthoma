@@ -1,7 +1,7 @@
 # sinthoma
 An in-progress comprehensive health and symptom tracker.
 
-[![Generic Badge](https://img.shields.io/badge/Status-In Progress-Yellow.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/status-in progress-yellow.svg)](https://shields.io/)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f1cf31c9a98e4e07a1483ce861537d05)](https://app.codacy.com/app/shishir.insane/sinthoma?utm_source=github.com&utm_medium=referral&utm_content=shishir-insane/sinthoma&utm_campaign=Badge_Grade_Settings)
 [![Build Status](https://travis-ci.com/shishir-insane/sinthoma.svg?branch=master)](https://travis-ci.com/shishir-insane/sinthoma)
 [![codecov](https://codecov.io/gh/shishir-insane/sinthoma/branch/master/graph/badge.svg)](https://codecov.io/gh/shishir-insane/sinthoma)

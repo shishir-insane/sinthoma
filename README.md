@@ -6,6 +6,7 @@ An in-progress comprehensive health and symptom tracker.
 [![Build Status](https://travis-ci.com/shishir-insane/sinthoma.svg?branch=master)](https://travis-ci.com/shishir-insane/sinthoma)
 [![codecov](https://codecov.io/gh/shishir-insane/sinthoma/branch/master/graph/badge.svg)](https://codecov.io/gh/shishir-insane/sinthoma)
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
+[![Requirements Status](https://requires.io/github/shishir-insane/sinthoma/requirements.svg?branch=master)](https://requires.io/github/shishir-insane/sinthoma/requirements/?branch=master)
 
 ## High Level Component Architecture Diagram
 

@@ -30,7 +30,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode
 @ApiModel("an User")
-public class User implements Serializable {
+public final class User implements Serializable {
 
     private static final long serialVersionUID = -1383662780029565743L;
 

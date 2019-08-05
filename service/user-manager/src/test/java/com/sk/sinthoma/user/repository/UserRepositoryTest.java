@@ -45,7 +45,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    void testFindByFirstNameAndLastNameNotNulResult() {
+    public void testFindByFirstNameAndLastNameNotNulResult() {
 	final List<User> users = userRepository.findByFirstNameAndLastName("John", "Doe");
 	assertThat(users).isNotNull();
 	assertThat(users.size()).isEqualTo(1);

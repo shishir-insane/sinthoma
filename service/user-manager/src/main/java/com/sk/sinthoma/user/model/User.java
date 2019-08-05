@@ -22,12 +22,14 @@ import java.util.Map;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Document
 @Data
 @EqualsAndHashCode
+@ApiModel("an User")
 public class User implements Serializable {
 
     private static final long serialVersionUID = -1383662780029565743L;

@@ -24,10 +24,21 @@ import org.springframework.stereotype.Repository;
 
 import com.sk.sinthoma.user.model.User;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
+@Api(tags = "User")
 @Repository
 @RepositoryRestResource(collectionResourceRel = "users", path = "users")
 public interface UserRepository extends MongoRepository<User, String> {
 
-    List<User> findByFirstNameAndLastName(@Param("firstName") String firstName, @Param("lastName") String lastName);
+    @ApiOperation("find all Users with given first names and last names")
+    List<User> findByFirstNameAndLastName(@Param("firstName") @ApiParam(value = "First Name of the User") String firstName,
+	    @Param("lastName") @ApiParam(value = "Last Name of the User") String lastName);
+    
+    @ApiOperation("find single user with given User ID and Password")
+    User findByUserIdAndPassword(@Param("userId") @ApiParam(value = "User ID of the User") String userId,
+	    @Param("password") @ApiParam(value = "Password of the User") String password);
 
 }

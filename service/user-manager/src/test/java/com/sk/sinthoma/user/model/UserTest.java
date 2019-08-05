@@ -15,14 +15,19 @@
  */
 package com.sk.sinthoma.user.model;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.junit.Test;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.EqualsVerifierApi;
 
 public class UserTest {
 
     @Test
     public void equalsContract() {
-	EqualsVerifier.forClass(User.class).verify();
+	EqualsVerifierApi<User> equalsUser = EqualsVerifier.forClass(User.class);
+	assertNotNull(equalsUser);
+	equalsUser.verify();
     }
 }

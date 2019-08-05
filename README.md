@@ -15,6 +15,17 @@ An in-progress comprehensive health and symptom tracker.
 
 ## Low Level Design
 
+## Technology Stack Used
+
+1. Methodology: Behaviour Driven Development BDD using Cucumber 4.7
+2. Microservice Design Patterns: Decomposition by Business Capability, Database per Service, Backend For Frontend BFF and Log Aggregation Observability pattern
+2. Programming Language: Java 8
+3. Database: Mongo DB 4.0
+4. UI Language: HTML 5, CSS 3, Javascript 3
+5. Templating Engine: Thymeleaf 3.0
+6. Framework: Spring Boot 2.1 with Spring-Security, Spring-Data-REST 
+7. Test Framework: JUnit 5, Jupiter Engine 
+
 ### Maven Module Design - Current State
 
 ![Sinthoma Maven Modules](docs/assets/images/Sinthoma-Maven-Modules.png)

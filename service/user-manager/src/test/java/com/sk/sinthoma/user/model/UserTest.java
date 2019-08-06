@@ -21,12 +21,13 @@ import org.junit.jupiter.api.Test;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierApi;
+import nl.jqno.equalsverifier.Warning;
 
 public class UserTest {
 
     @Test
     public void equalsContract() {
-	EqualsVerifierApi<User> equalsUser = EqualsVerifier.forClass(User.class);
+	EqualsVerifierApi<User> equalsUser = EqualsVerifier.forClass(User.class).suppress(Warning.NONFINAL_FIELDS);
 	assertNotNull(equalsUser);
 	equalsUser.verify();
     }

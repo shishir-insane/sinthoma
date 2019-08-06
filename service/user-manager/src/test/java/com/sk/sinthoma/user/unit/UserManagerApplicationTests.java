@@ -13,7 +13,7 @@
  * work may be distributed under different terms and without source code for 
  * the larger work.
  */
-package com.sk.sinthoma.user;
+package com.sk.sinthoma.user.unit;
 
 import static org.junit.Assert.assertNotNull;
 

@@ -13,7 +13,7 @@
  * work may be distributed under different terms and without source code for 
  * the larger work.
  */
-package com.sk.sinthoma.user.repository;
+package com.sk.sinthoma.user.unit.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,6 +28,7 @@ import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.sk.sinthoma.user.model.User;
+import com.sk.sinthoma.user.repository.UserRepository;
 
 @DataMongoTest
 @ExtendWith(SpringExtension.class)

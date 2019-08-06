@@ -5,4 +5,4 @@ COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY ${DEPENDENCY}/META-INF /app/META-INF
 COPY ${DEPENDENCY}/BOOT-INF/classes /app
 EXPOSE 8092
-ENTRYPOINT ["java","-cp","app:app/lib/*", "-Dspring.data.mongodb.uri=mongodb://mongo/sinthoma", "com.sk.sinthoma.user.UserManagerApplication"]
+ENTRYPOINT ["java","-cp","app:app/lib/*", "-Dspring.data.mongodb.uri=mongodb://mongo/sinthoma", "com.sk.sinthoma.user.unit.UserManagerApplication"]

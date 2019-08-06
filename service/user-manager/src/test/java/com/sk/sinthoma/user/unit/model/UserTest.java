@@ -13,11 +13,13 @@
  * work may be distributed under different terms and without source code for 
  * the larger work.
  */
-package com.sk.sinthoma.user.model;
+package com.sk.sinthoma.user.unit.model;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
+
+import com.sk.sinthoma.user.model.User;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierApi;

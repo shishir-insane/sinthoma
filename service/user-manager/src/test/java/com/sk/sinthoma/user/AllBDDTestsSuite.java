@@ -5,7 +5,7 @@ import org.junit.platform.suite.api.SelectPackages;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitPlatform.class)
-@SelectPackages("com.sk.sinthoma.user")
-public class AllTestsSuite {
+@SelectPackages("com.sk.sinthoma.user.bdd")
+public class AllBDDTestsSuite {
 
 }

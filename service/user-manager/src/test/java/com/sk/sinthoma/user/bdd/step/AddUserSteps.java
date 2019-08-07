@@ -11,9 +11,9 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java8.En;
 import io.restassured.response.Response;
 
-public class UserSteps extends AbstractSteps implements En {
+public class AddUserSteps extends AbstractSteps implements En {
 
-    public UserSteps() {
+    public AddUserSteps() {
 
 	Given("user wants to create a new user with the following attributes", (DataTable userDt) -> {
 	    testContext().reset();
@@ -22,7 +22,7 @@ public class UserSteps extends AbstractSteps implements En {
 	});
 
 	When("user saves the new user {string}", (String testContext) -> {
-	    String createUserUrl = "/users";
+	    String createUserUrl = "/sinthoma/user-manager/users";
 	    executePost(createUserUrl);
 	});
 

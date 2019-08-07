@@ -25,6 +25,7 @@ An in-progress comprehensive health and symptom tracker.
 5. **Templating Engine**: Thymeleaf 3.0
 6. **Framework**: Spring Boot 2.1 with Spring-Security, Spring-Data-REST 
 7. **Test Framework**: JUnit 5, Jupiter Engine 
+8. **Documentation**: Swagger 2
 
 ### Maven Module Design - Current State
 

@@ -1,3 +1,18 @@
+/**
+ * AbstractUserSteps.java
+ * user-manager
+ * Copyright 2019 Shishir Kumar
+ * 
+ * Licensed under the GNU Lesser General Public License v3.0
+ * Permissions of this license are conditioned on making available complete 
+ * source code of licensed works and modifications under the same license 
+ * or the GNU GPLv3. Copyright and license notices must be preserved. 
+ * 
+ * Contributors provide an express grant of patent rights. However, a larger 
+ * work using the licensed work through interfaces provided by the licensed 
+ * work may be distributed under different terms and without source code for 
+ * the larger work.
+ */
 package com.sk.sinthoma.user.bdd.step;
 
 import java.util.Map;
@@ -16,7 +31,7 @@ import io.restassured.specification.RequestSpecification;
  */
 public class AbstractUserSteps {
 
-    private CucumberTestContext CONTEXT = CucumberTestContext.CONTEXT;
+    private final CucumberTestContext CONTEXT = CucumberTestContext.CONTEXT;
 
     @LocalServerPort
     private int port;
@@ -46,7 +61,7 @@ public class AbstractUserSteps {
 	setQueryParams(pathParams, request);
 	setPathParams(queryParamas, request);
 
-	Response response = request.accept(ContentType.JSON).log().all().post(url);
+	final Response response = request.accept(ContentType.JSON).log().all().post(url);
 
 	logResponse(response);
 
@@ -58,7 +73,7 @@ public class AbstractUserSteps {
 	final Object payload = CONTEXT.getPayload();
 	final String url = baseUrl() + apiPath;
 
-	Response response = request.multiPart("fuelTransfer", payload, "application/json").log().all().post(url);
+	final Response response = request.multiPart("fuelTransfer", payload, "application/json").log().all().post(url);
 
 	logResponse(response);
 	CONTEXT.setResponse(response);
@@ -81,7 +96,7 @@ public class AbstractUserSteps {
 	setQueryParams(pathParams, request);
 	setPathParams(queryParams, request);
 
-	Response response = request.accept(ContentType.JSON).log().all().delete(url);
+	final Response response = request.accept(ContentType.JSON).log().all().delete(url);
 
 	logResponse(response);
 	CONTEXT.setResponse(response);
@@ -104,7 +119,7 @@ public class AbstractUserSteps {
 	setQueryParams(pathParams, request);
 	setPathParams(queryParams, request);
 
-	Response response = request.accept(ContentType.JSON).log().all().put(url);
+	final Response response = request.accept(ContentType.JSON).log().all().put(url);
 
 	logResponse(response);
 	CONTEXT.setResponse(response);
@@ -127,7 +142,7 @@ public class AbstractUserSteps {
 	setQueryParams(pathParams, request);
 	setPathParams(queryParams, request);
 
-	Response response = request.accept(ContentType.JSON).log().all().patch(url);
+	final Response response = request.accept(ContentType.JSON).log().all().patch(url);
 
 	logResponse(response);
 	CONTEXT.setResponse(response);
@@ -148,7 +163,7 @@ public class AbstractUserSteps {
 	setQueryParams(pathParams, request);
 	setPathParams(queryParams, request);
 
-	Response response = request.accept(ContentType.JSON).log().all().get(url);
+	final Response response = request.accept(ContentType.JSON).log().all().get(url);
 
 	logResponse(response);
 	CONTEXT.setResponse(response);

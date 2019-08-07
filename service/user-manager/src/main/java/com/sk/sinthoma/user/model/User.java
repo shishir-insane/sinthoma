@@ -40,7 +40,7 @@ public final class User implements Serializable {
 
     @Id
     private String id;
-    @Indexed
+    @Indexed(unique = true)
     private String userName;
     private String firstName;
     private String lastName;

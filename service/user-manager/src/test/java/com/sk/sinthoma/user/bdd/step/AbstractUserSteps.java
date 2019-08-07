@@ -14,7 +14,7 @@ import io.restassured.specification.RequestSpecification;
  * Class that abstract test context management and REST API invocation.
  *
  */
-public class AbstractSteps {
+public class AbstractUserSteps {
 
     private CucumberTestContext CONTEXT = CucumberTestContext.CONTEXT;
 

@@ -38,7 +38,7 @@ public interface UserRepository extends MongoRepository<User, String> {
 	    @Param("lastName") @ApiParam(value = "Last Name of the User") String lastName);
     
     @ApiOperation("find single user with given User ID and Password")
-    User findByUserIdAndPassword(@Param("userId") @ApiParam(value = "User ID of the User") String userId,
+    User findByUserNameAndPassword(@Param("userName") @ApiParam(value = "User Name of the User") String userName,
 	    @Param("password") @ApiParam(value = "Password of the User") String password);
 
 }

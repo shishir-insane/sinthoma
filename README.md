@@ -15,7 +15,7 @@ An in-progress comprehensive health and symptom tracker.
 
 ## Low Level Design
 
-## Stack Used
+### Stack Used
 
 1. **Methodology**: Behaviour Driven Development BDD using Cucumber 4.7
 2. **Microservice Design Patterns**: Decomposition by Business Capability, Database per Service, Backend For Frontend BFF and Log Aggregation Observability pattern

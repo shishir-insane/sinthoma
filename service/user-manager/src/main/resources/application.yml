@@ -2,7 +2,6 @@ server:
   port: 8092
   servlet:
     context-path: /sinthoma/user-manager
-    
 spring:
   data:
     mongodb:
@@ -10,4 +9,11 @@ spring:
     rest:
       default-page-size: 10
       max-page-size: 25
-      
+  application:
+    name: user-manager
+logging:
+  file: ./user-manager.log
+  level:
+    com.sk.sinthoma.user: INFO
+    org.springframework.aop.interceptor.PerformanceMonitorInterceptor: TRACE
+    org.springframework: INFO        

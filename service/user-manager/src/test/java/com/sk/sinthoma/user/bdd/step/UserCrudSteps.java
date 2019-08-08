@@ -40,10 +40,14 @@ public class UserCrudSteps extends AbstractUserSteps implements En {
 
     public UserCrudSteps() {
 
-	Given("client wants to create new user with the following attributes", (DataTable userDt) -> {
+	Given("client wants to (.*) with the following attributes", (String action, DataTable userDt) -> {
 	    testContext().reset();
 	    final List<User> userList = userDt.asList(User.class);
 	    super.testContext().setPayload(userList.get(0));
+	});
+	
+	Given("client wants to get a user with (.*)", (String attributes) -> {
+	    testContext().reset();
 	});
 
 	When("(.*) call to endpoint (.*) with (.*) is made", (String method, String endpointUri, String attributes) -> {

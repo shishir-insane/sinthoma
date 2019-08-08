@@ -18,12 +18,12 @@ Feature: CRUD on user with userName john.doe
 
   Scenario: Fetch a user using primary key userName
     Given client wants to get a user with userName john.doe
-    When POST call to endpoint /users/1000 with id 1000 is made
+    When GET call to endpoint /users/1000 with id 1000 is made
     Then the response is successful
     And it has 1 user with parameter userName as john.doe
     
   Scenario: Update password of an existing user with userName attributes
-    Given client wants to create new user with the following attributes
+    Given client wants to update an existing user with the following attributes
       | id | userName	 | firstName | lastName | emailId            | password | imagePath |
       |   1000 | john.doe  | John      | Doe      | john.doe@email.com |   ABCDEF |           |
     When PUT call to endpoint /users/1000 with given attributes is made

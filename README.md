@@ -12,25 +12,23 @@ An in-progress comprehensive health and symptom tracker.
 
 ![Sinthoma Components](docs/assets/images/Sinthoma-UML.png)
 
-
 ## Low Level Design
 
 ### Stack Used
 
 1. **Methodology**: Behaviour Driven Development BDD using Cucumber 4.7
 2. **Microservice Design Patterns**: Decomposition by Business Capability, Database per Service, Backend For Frontend BFF and Log Aggregation Observability pattern
-2. **Programming Language**: Java 8
-3. **Database**: Mongo DB 4.0
-4. **UI Language**: HTML 5, CSS 3, Javascript 3
-5. **Templating Engine**: Thymeleaf 3.0
-6. **Framework**: Spring Boot 2.1 with Spring-Security, Spring-Data-REST 
-7. **Test Framework**: JUnit 5, Jupiter Engine 
-8. **Documentation**: Swagger 2
+3.  **Programming Language**: Java 8
+4.  **Database**: Mongo DB 4.0
+5.  **UI Language**: HTML 5, CSS 3, Javascript 3
+6.  **Templating Engine**: Thymeleaf 3.0
+7.  **Framework**: Spring Boot 2.1 with Spring-Security, Spring-Data-REST 
+8.  **Test Framework**: JUnit 5, Jupiter Engine 
+8.  **Documentation**: Swagger 2
 
 ### Maven Module Design - Current State
 
 ![Sinthoma Maven Modules](docs/assets/images/Sinthoma-Maven-Modules.png)
-
 
 ### API Summary
 
@@ -54,7 +52,6 @@ An in-progress comprehensive health and symptom tracker.
 | 16 | DB    | Mongo DB Express           | localhost | 8090 | /db/sinthoma           |                                        |
 
 ## Status Summary
-
 | #  | Layer | Component                  | Status      | Planned | Designed    | Developed   | Tested | Released |
 |----|-------|----------------------------|-------------|---------|-------------|-------------|--------|----------|
 | 1  | UI    | Sinthoma Web               | IN PROGRESS | YES     | YES         | IN PROGRESS | NO     | NO       |
@@ -71,4 +68,3 @@ An in-progress comprehensive health and symptom tracker.
 | 12 | CORE  | Notification Manager API   | NOT STARTED | NO      | NO          | NO          | NO     | NO       |
 | 13 | PROXY | Weather Proxy API          | NOT STARTED | NO      | NO          | NO          | NO     | NO       |
 | 14 | PROXY | Email Proxy API            | NOT STARTED | NO      | NO          | NO          | NO     | NO       |
-

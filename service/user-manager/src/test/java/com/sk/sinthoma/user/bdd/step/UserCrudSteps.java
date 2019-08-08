@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.reflect.FieldUtils;
 import org.springframework.http.HttpMethod;
 
 import com.sk.sinthoma.user.model.User;
@@ -35,7 +36,7 @@ import io.restassured.response.Response;
 
 public class UserCrudSteps extends AbstractUserSteps implements En {
 
-    private static final String USER_RESOURCE_URI = "/sinthoma/user-manager/users";
+    private static final String USER_RESOURCE_URI = "/sinthoma/user-manager";
 
     public UserCrudSteps() {
 
@@ -45,21 +46,13 @@ public class UserCrudSteps extends AbstractUserSteps implements En {
 	    super.testContext().setPayload(userList.get(0));
 	});
 
-	When("(.*) call to endpoint /users with (.*) is made", (String method, String attributes) -> {
-	    Map<String, String> attributesMap = null;
-
-	    if (!StringUtils.containsIgnoreCase(attributes, "given")) {
-		attributesMap = splitAttributesToMap(attributes);
-	    }
-
+	When("(.*) call to endpoint (.*) with (.*) is made", (String method, String endpointUri, String attributes) -> {
 	    if (StringUtils.equalsAnyIgnoreCase(method, HttpMethod.POST.toString())) {
-		executePost(USER_RESOURCE_URI);
+		executePost(USER_RESOURCE_URI + endpointUri);
 	    } else if (StringUtils.equalsAnyIgnoreCase(method, HttpMethod.GET.toString())) {
-		final StringBuilder getUserUrl = new StringBuilder(USER_RESOURCE_URI);
-		if (attributesMap.containsKey("id")) {
-		    getUserUrl.append("/").append(attributesMap.get("id"));
-		}
-		executeGet(getUserUrl.toString());
+		executeGet(USER_RESOURCE_URI + endpointUri);
+	    } else if (StringUtils.equalsAnyIgnoreCase(method, HttpMethod.PUT.toString())) {
+		executePut(USER_RESOURCE_URI + endpointUri);
 	    }
 	});
 
@@ -74,19 +67,20 @@ public class UserCrudSteps extends AbstractUserSteps implements En {
 		break;
 	    default:
 		fail("Unexpected error");
+		break;
 	    }
 	});
 
-	And("it has (\\d+) user with userName (.*)", (Integer noOfUsers, String idValue) -> {
+	And("it has (\\d+) user with parameter (.*) as (.*)", (Integer noOfUsers, String paramName, String paramValue) -> {
 	    final Response response = testContext().getResponse();
 	    if (noOfUsers == 1) {
 		final User user = response.getBody().as(User.class);
-		assertThat(user.getUserName()).isEqualTo(idValue);
-	    }
+		    assertThat(FieldUtils.readField(user, paramName, true)).isEqualTo(paramValue);
+		}
 	});
     }
 
-    private Map<String, String> splitAttributesToMap(String attributes) {
+    public Map<String, String> splitAttributesToMap(String attributes) {
 	Map<String, String> attributesMap = null;
 	if (StringUtils.isNotBlank(attributes)) {
 	    attributesMap = new HashMap<>();

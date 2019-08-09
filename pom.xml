@@ -23,6 +23,7 @@
 		<io.cucumber.version>4.7.1</io.cucumber.version>
 		<net.serenity-bdd.version>2.0.67</net.serenity-bdd.version>
 		<spring.cloud.sleuth.version>2.1.2.RELEASE</spring.cloud.sleuth.version>
+		<maven.test.skip>true</maven.test.skip>
 	</properties>
 
 
@@ -45,9 +46,9 @@
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
 		</dependency>
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>nl.jqno.equalsverifier</groupId>
 			<artifactId>equalsverifier</artifactId>
@@ -96,55 +97,6 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<profiles>
-		<profile>
-			<id>release</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-dependency-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>unpack</id>
-								<phase>package</phase>
-								<goals>
-									<goal>unpack</goal>
-								</goals>
-								<configuration>
-									<artifactItems>
-										<artifactItem>
-											<groupId>${project.groupId}</groupId>
-											<artifactId>${project.artifactId}</artifactId>
-											<version>${project.version}</version>
-										</artifactItem>
-									</artifactItems>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>com.spotify</groupId>
-						<artifactId>dockerfile-maven-plugin</artifactId>
-						<version>${dockerfile-maven-version}</version>
-						<executions>
-							<execution>
-								<id>default</id>
-								<goals>
-									<goal>build</goal>
-									<goal>push</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<repository>${docker.image.repo}/${project.artifactId}</repository>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -174,6 +126,15 @@
 				</executions>
 			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>com.spotify</groupId>
+					<artifactId>dockerfile-maven-plugin</artifactId>
+					<version>${dockerfile-maven-version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 	<repositories>

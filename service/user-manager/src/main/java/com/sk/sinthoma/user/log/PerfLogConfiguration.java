@@ -1,4 +1,4 @@
-package com.sk.sinthoma.user.aop;
+package com.sk.sinthoma.user.log;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @Configuration
 @EnableAspectJAutoProxy
 @Aspect
-public class AopConfiguration {
+public class PerfLogConfiguration {
      
     @Pointcut( "execution(* com.sk.sinthoma.user.*.*.*(..))")
     public void monitor() { }
@@ -26,7 +26,7 @@ public class AopConfiguration {
     @Bean
     public Advisor performanceMonitorAdvisor() {
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
-        pointcut.setExpression("com.sk.sinthoma.user.aop.AopConfiguration.monitor()");
+        pointcut.setExpression("com.sk.sinthoma.user.log.PerfLogConfiguration.monitor()");
         return new DefaultPointcutAdvisor(pointcut, performanceMonitorInterceptor());
     }
 }

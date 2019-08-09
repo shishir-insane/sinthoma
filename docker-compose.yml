@@ -29,15 +29,15 @@ services:
         links:
             - mongo    
         build:
-            context: ./
+            context: ./service/user-manager
             dockerfile: Dockerfile
             
-    sinthoma-web:
-        image: shishirinsane/sinthoma/sinthoma-web
-        ports:
-            - 8093:8093
-        links:
-            - user-manager    
-        build:
-            context: ./
-            dockerfile: Dockerfile      
+#    sinthoma-bff:
+#        image: shishirinsane/sinthoma/sinthoma-bff
+#        ports:
+#            - 8093:8093
+#        links:
+#            - user-manager    
+#        build:
+#            context: ./service/user-manager
+#            dockerfile: Dockerfile

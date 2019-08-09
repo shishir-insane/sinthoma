@@ -1,1 +1,10 @@
-
+server:
+  port: 8094
+  servlet:
+    context-path: /sinthoma/dashboard-bff
+app:
+  services:
+    user-manager:
+      uri: http://localhost:8092/sinthoma/user-manager
+      resource: 
+        user: /users

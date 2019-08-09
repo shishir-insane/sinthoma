@@ -1,4 +1,4 @@
-package cok.sk.sinthoma.bff.dashboard;
+package com.sk.sinthoma.bff.dashboard;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

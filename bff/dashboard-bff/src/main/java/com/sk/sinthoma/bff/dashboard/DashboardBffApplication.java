@@ -13,7 +13,7 @@
  * work may be distributed under different terms and without source code for 
  * the larger work.
  */
-package cok.sk.sinthoma.bff.dashboard;
+package com.sk.sinthoma.bff.dashboard;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

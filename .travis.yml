@@ -1,3 +1,8 @@
 language: java
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+addons:
+  sonarcloud:
+    organization: "shishir-insane"
+    token:
+      secure: "e91c5c7b72aab9e8bd070dbef0ef3e72e29e4106"

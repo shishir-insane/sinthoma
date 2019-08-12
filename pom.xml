@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.6.RELEASE</version>
+		<version>2.1.7.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -23,6 +23,8 @@
 		<io.cucumber.version>4.7.1</io.cucumber.version>
 		<net.serenity-bdd.version>2.0.67</net.serenity-bdd.version>
 		<spring.cloud.sleuth.version>2.1.2.RELEASE</spring.cloud.sleuth.version>
+		<com.amazonnews.dynamodb.version>1.11.608</com.amazonnews.dynamodb.version>
+		<spring.data.dynamodb.version>5.1.0</spring.data.dynamodb.version>
 		<maven.test.skip>true</maven.test.skip>
 	</properties>
 

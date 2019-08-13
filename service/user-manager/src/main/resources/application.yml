@@ -11,9 +11,21 @@ spring:
       max-page-size: 25
   application:
     name: user-manager
+  main:
+    allow-bean-definition-overriding: true
 logging:
   file: ./user-manager.log
   level:
     com.sk.sinthoma.user: INFO
     org.springframework.aop.interceptor.PerformanceMonitorInterceptor: TRACE
-    org.springframework: INFO        
+    org.springframework: INFO    
+app:
+  amazon:
+    aws:
+      accesskey: AKIA5X34E3UEONVM57JU
+      secretkey: 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
+      region: us-east-1
+    dynamodb:
+      endpoint: 
+      
+        

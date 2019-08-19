@@ -12,12 +12,6 @@
 	<artifactId>user-manager</artifactId>
 	<name>user-manager</name>
 	<description>User Manager Microservice</description>
-	
-	<properties>
-		<sqlite4java.version>1.0.392</sqlite4java.version>
-		<dynamodblocal.version>1.11.86</dynamodblocal.version>
-        <dynamodblocal.repository.url>https://s3-us-west-2.amazonaws.com/dynamodb-local/release</dynamodblocal.repository.url>
-	</properties>
 
 	<dependencies>
 		<dependency>
@@ -39,14 +33,8 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>com.amazonaws</groupId>
-			<artifactId>aws-java-sdk-dynamodb</artifactId>
-			<version>${com.amazonnews.dynamodb.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.derjust</groupId>
-			<artifactId>spring-data-dynamodb</artifactId>
-			<version>${spring.data.dynamodb.version}</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -109,53 +97,6 @@
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.amazonaws</groupId>
-			<artifactId>DynamoDBLocal</artifactId>
-			<version>${dynamodblocal.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.almworks.sqlite4java</groupId>
-			<artifactId>sqlite4java</artifactId>
-			<version>${sqlite4java.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.almworks.sqlite4java</groupId>
-			<artifactId>sqlite4java-win32-x86</artifactId>
-			<version>${sqlite4java.version}</version>
-			<type>dll</type>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.almworks.sqlite4java</groupId>
-			<artifactId>sqlite4java-win32-x64</artifactId>
-			<version>${sqlite4java.version}</version>
-			<type>dll</type>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.almworks.sqlite4java</groupId>
-			<artifactId>libsqlite4java-osx</artifactId>
-			<version>${sqlite4java.version}</version>
-			<type>dylib</type>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.almworks.sqlite4java</groupId>
-			<artifactId>libsqlite4java-linux-i386</artifactId>
-			<version>${sqlite4java.version}</version>
-			<type>so</type>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.almworks.sqlite4java</groupId>
-			<artifactId>libsqlite4java-linux-amd64</artifactId>
-			<version>${sqlite4java.version}</version>
-			<type>so</type>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -223,12 +164,4 @@
 			</extension>
 		</extensions>
 	</build>
-	
-	<repositories>
-        <repository>
-            <id>dynamodb-local</id>
-            <name>DynamoDB Local Release Repository</name>
-            <url>${dynamodblocal.repository.url}</url>
-        </repository>
-    </repositories>
 </project>

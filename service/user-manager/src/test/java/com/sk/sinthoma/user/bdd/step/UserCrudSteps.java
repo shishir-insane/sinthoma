@@ -2,15 +2,15 @@
  * UserCrudSteps.java
  * user-manager
  * Copyright 2019 Shishir Kumar
- *
+ * 
  * Licensed under the GNU Lesser General Public License v3.0
- * Permissions of this license are conditioned on making available complete
- * source code of licensed works and modifications under the same license
- * or the GNU GPLv3. Copyright and license notices must be preserved.
- *
- * Contributors provide an express grant of patent rights. However, a larger
- * work using the licensed work through interfaces provided by the licensed
- * work may be distributed under different terms and without source code for
+ * Permissions of this license are conditioned on making available complete 
+ * source code of licensed works and modifications under the same license 
+ * or the GNU GPLv3. Copyright and license notices must be preserved. 
+ * 
+ * Contributors provide an express grant of patent rights. However, a larger 
+ * work using the licensed work through interfaces provided by the licensed 
+ * work may be distributed under different terms and without source code for 
  * the larger work.
  */
 package com.sk.sinthoma.user.bdd.step;
@@ -45,7 +45,7 @@ public class UserCrudSteps extends AbstractUserSteps implements En {
 	    final List<User> userList = userDt.asList(User.class);
 	    super.testContext().setPayload(userList.get(0));
 	});
-
+	
 	Given("client wants to get a user with (.*)", (String attributes) -> {
 	    testContext().reset();
 	});
@@ -75,14 +75,13 @@ public class UserCrudSteps extends AbstractUserSteps implements En {
 	    }
 	});
 
-	And("it has (\\d+) user with parameter (.*) as (.*)",
-		(Integer noOfUsers, String paramName, String paramValue) -> {
-		    final Response response = testContext().getResponse();
-		    if (noOfUsers == 1) {
-			final User user = response.getBody().as(User.class);
-			assertThat(FieldUtils.readField(user, paramName, true)).isEqualTo(paramValue);
-		    }
-		});
+	And("it has (\\d+) user with parameter (.*) as (.*)", (Integer noOfUsers, String paramName, String paramValue) -> {
+	    final Response response = testContext().getResponse();
+	    if (noOfUsers == 1) {
+		final User user = response.getBody().as(User.class);
+		    assertThat(FieldUtils.readField(user, paramName, true)).isEqualTo(paramValue);
+		}
+	});
     }
 
     public Map<String, String> splitAttributesToMap(String attributes) {

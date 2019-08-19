@@ -1,6 +1,6 @@
 version: "3.3"
 services:
-    mongo:
+    mongo-db:
         image: mongo
         restart: always
         command: mongod --port 8090
@@ -23,14 +23,14 @@ services:
             VCAP_APP_PORT: 8091
       
     user-manager:
-        image: shishirinsane/sinthoma/user-manager
         ports:
-            - 8092:8092
-        links:
-            - mongo    
+            - 8092:8092  
         build:
-            context: ./service/user-manager
+            context: service/user-manager/
             dockerfile: Dockerfile
+        depends_on:
+            - mongo-db
+        restart: always
             
 #    sinthoma-bff:
 #        image: shishirinsane/sinthoma/sinthoma-bff

@@ -25,7 +25,7 @@
 		<spring.cloud.sleuth.version>2.1.2.RELEASE</spring.cloud.sleuth.version>
 		<com.amazonnews.dynamodb.version>1.11.608</com.amazonnews.dynamodb.version>
 		<spring.data.dynamodb.version>5.1.0</spring.data.dynamodb.version>
-		<maven.test.skip>false</maven.test.skip>
+		<maven.test.skip>true</maven.test.skip>
 	</properties>
 
 

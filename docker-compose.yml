@@ -10,9 +10,6 @@ services:
       entrypoint: java
       command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /data"
       restart: always
-      environment:
-        - ./Djava.library.path=../db/DynamoDBLocal_lib
-      working_dir: /home/dynamodblocal
       
 #    mongo:
 #        image: mongo
@@ -40,9 +37,8 @@ services:
 #        image: shishirinsane/sinthoma/user-manager
 #        ports:
 #            - 8092:8092
-#        depends_on:
-#            - "dynamodb":
-#                condition: service_healthy  
+#        links:
+#            - mongo    
 #        build:
 #            context: ./service/user-manager
 #            dockerfile: Dockerfile

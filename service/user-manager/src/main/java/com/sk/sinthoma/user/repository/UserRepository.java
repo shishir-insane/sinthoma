@@ -20,6 +20,8 @@ import java.util.List;
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.stereotype.Repository;
 
 import com.sk.sinthoma.user.model.User;
 
@@ -28,6 +30,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 @Api(tags = "User")
+@Repository
+@RepositoryRestResource(collectionResourceRel = "users", path = "users")
 @EnableScan
 public interface UserRepository extends CrudRepository<User, String> {
 

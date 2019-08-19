@@ -19,7 +19,7 @@ An in-progress comprehensive health and symptom tracker.
 1. **Methodology**: Behaviour Driven Development BDD using Cucumber 4.7
 2. **Microservice Design Patterns**: Decomposition by Business Capability, Database per Service, Backend For Frontend BFF and Log Aggregation Observability pattern
 3.  **Programming Language**: Java 8
-4.  **Database**: AWS DynamoDB
+4.  **Database**: Mongo DB 4.0
 5.  **UI Stack**: HTML 5, CSS 3, Javascript 3
 6.  **Templating Engine**: Thymeleaf 3.0
 7.  **Framework**: Spring Boot 2.1 with Spring-Security, Spring-Data-REST 

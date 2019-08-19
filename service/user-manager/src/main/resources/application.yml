@@ -22,8 +22,8 @@ logging:
 app:
   amazon:
     aws:
-      accesskey: test
-      secretkey: test
+      accesskey: AKIA5X34E3UEONVM57JU
+      secretkey: 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
       region: us-east-1
     dynamodb:
       endpoint: 

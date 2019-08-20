@@ -5,7 +5,7 @@ server:
 spring:
   data:
     mongodb:
-      uri: mongodb://app-owner:App0wn3r@mongo-db/sinthoma
+      uri: mongodb://app-owner:App0wn3r@mongo/sinthoma
     rest:
       default-page-size: 10
       max-page-size: 25

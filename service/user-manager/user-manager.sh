@@ -1,6 +1,5 @@
 #!/bin/sh
 
-APP_PATH=`pwd`
-
-cd $APP_PATH
 ./mvnw clean package -DskipTests -Prelease
+
+java -cp app:app/lib/* com.sk.sinthoma.user.UserManagerApplication

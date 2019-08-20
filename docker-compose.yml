@@ -1,14 +1,18 @@
 version: "3.3"
 services:
-    mongo-db:
+    mongo:
         image: mongo
         restart: always
-        command: mongod --port 8090
+        command: mongod
+        container_name: mongodb
         ports:
-            - 8090:8090
+            - 8090:27017
+        volumes: 
+            - /data/db:/data/db
         environment:
             MONGO_INITDB_ROOT_USERNAME: root
             MONGO_INITDB_ROOT_PASSWORD: example
+
 
     mongo-express:
         image: mongo-express
@@ -18,20 +22,17 @@ services:
         environment:
             ME_CONFIG_MONGODB_ADMINUSERNAME: root
             ME_CONFIG_MONGODB_ADMINPASSWORD: example
-            ME_CONFIG_MONGODB_PORT: 8090
             VCAP_APP_HOST: 0.0.0.0
             VCAP_APP_PORT: 8091
-      
-    user-manager:
-        ports:
-            - 8092:8092  
-        build:
-            context: service/user-manager/
-            dockerfile: Dockerfile
-        depends_on:
-            - mongo-db
-        restart: always
             
+    user-manager:
+      image: shishirinsane/sinthoma/user-manager
+      ports:
+          - 8092:8092  
+      depends_on:
+          - mongo
+      restart: always
+#            
 #    sinthoma-bff:
 #        image: shishirinsane/sinthoma/sinthoma-bff
 #        ports:

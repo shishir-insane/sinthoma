@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Document
+@Document(collection="users")
 @Data
 @EqualsAndHashCode
 @ApiModel("an User")

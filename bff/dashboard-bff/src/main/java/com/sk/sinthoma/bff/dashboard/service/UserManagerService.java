@@ -4,5 +4,5 @@ import com.sk.sinthoma.bff.dashboard.model.User;
 
 public interface UserManagerService {
     
-    User login(String userName, String password);
+    User login(User user);
 }

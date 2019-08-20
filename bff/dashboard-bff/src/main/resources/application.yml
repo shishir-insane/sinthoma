@@ -8,3 +8,4 @@ app:
       uri: http://localhost:8092/sinthoma/user-manager
       resource: 
         user: /users
+        search-by-username: /users/search/findByUserName?userName={userName}

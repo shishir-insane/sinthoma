@@ -32,7 +32,7 @@ import lombok.EqualsAndHashCode;
 @Document(collection="users")
 @Data
 @EqualsAndHashCode
-@ApiModel("an User")
+@ApiModel("User")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public final class User implements Serializable {
 

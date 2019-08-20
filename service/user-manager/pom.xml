@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.sk.sinthoma</groupId>
 		<artifactId>sinthoma-service-base</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0</version>
 		<relativePath>../sinthoma-service-base</relativePath>
 	</parent>
 	<artifactId>user-manager</artifactId>
@@ -44,11 +44,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

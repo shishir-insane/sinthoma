@@ -10,13 +10,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Configuration
 @EnableAspectJAutoProxy
 @Aspect
+@Slf4j
 public class PerfLogConfiguration {
      
     @Pointcut( "execution(* com.sk.sinthoma.bff.dashboard.*.*.*(..))")
-    public void monitor() { }
+    public void monitor() { 
+	log.info("Pointcut defined for execution(* com.sk.sinthoma.bff.dashboard.*.*.*(..))");
+    }
      
     @Bean
     public PerformanceMonitorInterceptor performanceMonitorInterceptor() {
@@ -26,7 +31,7 @@ public class PerfLogConfiguration {
     @Bean
     public Advisor performanceMonitorAdvisor() {
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
-        pointcut.setExpression("com.sk.sinthoma.user.aop.AopConfiguration.monitor()");
+        pointcut.setExpression("com.sk.sinthoma.bff.dashboard.log.PerfLogConfiguration.monitor()");
         return new DefaultPointcutAdvisor(pointcut, performanceMonitorInterceptor());
     }
 }

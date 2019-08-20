@@ -10,13 +10,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Configuration
 @EnableAspectJAutoProxy
 @Aspect
+@Slf4j
 public class PerfLogConfiguration {
      
     @Pointcut( "execution(* com.sk.sinthoma.user.*.*.*(..))")
-    public void monitor() { }
+    public void monitor() { 
+	log.info("Pointcut defined for execution(* com.sk.sinthoma.user.*.*.*(..))");
+    }
      
     @Bean
     public PerformanceMonitorInterceptor performanceMonitorInterceptor() {

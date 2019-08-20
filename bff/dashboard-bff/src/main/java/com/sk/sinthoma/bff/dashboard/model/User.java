@@ -19,16 +19,21 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode
+@JsonIgnoreProperties(ignoreUnknown = true)
+@ApiModel("User")
 public class User implements Serializable {
 
     private static final long serialVersionUID = -4136222490310022268L;
     
-    private String userId;
+    private String userName;
     private String firstName;
     private String lastName;
     private String emailId;

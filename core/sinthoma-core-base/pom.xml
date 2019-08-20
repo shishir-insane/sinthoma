@@ -11,13 +11,13 @@
 		<relativePath>../../</relativePath>
 	</parent>
 
-	<artifactId>sinthoma-bff-base</artifactId>
-	<name>sinthoma-bff-base</name>
-	<description>Base module for Sinthoma microservice BFF components</description>
+	<artifactId>sinthoma-core-base</artifactId>
+	<name>sinthoma-core-base</name>
+	<description>Base module for Sinthoma core components</description>
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>../dashboard-bff</module>
+		<module>../core-logger</module>
 	</modules>
 
 </project>

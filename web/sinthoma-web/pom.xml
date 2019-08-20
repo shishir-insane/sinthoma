@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>com.sk.sinthoma</groupId>
 		<artifactId>sinthoma-base</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0</version>
 		<relativePath>../../</relativePath> 
 	</parent>
 

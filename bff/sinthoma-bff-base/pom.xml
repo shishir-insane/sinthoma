@@ -17,7 +17,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<!-- <module>../dashboard-bff</module> -->
+		<module>../dashboard-bff</module>
 	</modules>
 
 </project>

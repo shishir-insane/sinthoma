@@ -13,6 +13,6 @@ public class UserManagerController {
     @RequestMapping("/login")
     @ResponseBody
     public User getUser(@RequestParam("username") String userName, @RequestParam("password") String password) {
-
+	return null;
     }
 }

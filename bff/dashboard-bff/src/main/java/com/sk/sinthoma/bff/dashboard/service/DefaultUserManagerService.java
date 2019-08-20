@@ -16,8 +16,8 @@ public class DefaultUserManagerService implements UserManagerService {
     
     @Override
     public User login(String userName, String password) {
-	restTemplate.getForObject(userManagerResourceUri, User.class, uriVariables);
-	
+	restTemplate.getForObject(userManagerResourceUri, User.class);
+	return null;
     }
 
 }

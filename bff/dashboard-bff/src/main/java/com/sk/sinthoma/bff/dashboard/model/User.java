@@ -13,35 +13,22 @@
  * work may be distributed under different terms and without source code for 
  * the larger work.
  */
-package com.sk.sinthoma.user.model;
+package com.sk.sinthoma.bff.dashboard.model;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Document(collection="users")
 @Data
 @EqualsAndHashCode
-@ApiModel("an User")
-@JsonIgnoreProperties(ignoreUnknown = true)
-public final class User implements Serializable {
+public class User implements Serializable {
 
-    private static final long serialVersionUID = -1383662780029565743L;
-
-    @Id
-    private String id;
-    @Indexed(unique = true)
-    private String userName;
+    private static final long serialVersionUID = -4136222490310022268L;
+    
+    private String userId;
     private String firstName;
     private String lastName;
     private String emailId;

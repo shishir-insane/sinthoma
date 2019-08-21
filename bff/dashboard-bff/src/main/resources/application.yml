@@ -2,6 +2,12 @@ server:
   port: 8094
   servlet:
     context-path: /sinthoma/dashboard-bff
+logging:
+  file: ./dashboard-bff.log
+  level:
+    com.sk.sinthoma.bff: INFO
+    org.springframework.aop.interceptor.PerformanceMonitorInterceptor: TRACE
+    org.springframework: DEBUG  
 app:
   services:
     user-manager:

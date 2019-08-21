@@ -23,7 +23,7 @@
 		<springfox.swagger2.version>3.0.0-SNAPSHOT</springfox.swagger2.version>
 		<io.cucumber.version>4.7.1</io.cucumber.version>
 		<net.serenity-bdd.version>2.0.67</net.serenity-bdd.version>
-		<spring.cloud.sleuth.version>2.1.2.RELEASE</spring.cloud.sleuth.version>
+		<spring-cloud.version>Hoxton.M2</spring-cloud.version>
 		<org.aspectj.aspectweaver.version>1.9.4</org.aspectj.aspectweaver.version>
 		<maven.test.skip>false</maven.test.skip>
 	</properties>
@@ -43,40 +43,36 @@
 		<module>service/sinthoma-service-base</module>
 	</modules>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-sleuth</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>nl.jqno.equalsverifier</groupId>
-			<artifactId>equalsverifier</artifactId>
-			<version>${nl.jqno.equalsverifier.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>${springfox.swagger2.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-data-rest</artifactId>
-			<version>${springfox.swagger2.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>${springfox.swagger2.version}</version>
-		</dependency>
-	</dependencies>
-
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>nl.jqno.equalsverifier</groupId>
+				<artifactId>equalsverifier</artifactId>
+				<version>${nl.jqno.equalsverifier.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${springfox.swagger2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-data-rest</artifactId>
+				<version>${springfox.swagger2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${springfox.swagger2.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework.data</groupId>
 				<artifactId>spring-data-releasetrain</artifactId>
@@ -91,13 +87,6 @@
 				<scope>test</scope>
 			</dependency>
 			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-sleuth</artifactId>
-				<version>${spring.cloud.sleuth.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
 				<groupId>org.aspectj</groupId>
 				<artifactId>aspectjweaver</artifactId>
 				<version>${org.aspectj.aspectweaver.version}</version>
@@ -107,7 +96,6 @@
 				<artifactId>core-logger</artifactId>
 				<version>${sinthoma.version}</version>
 			</dependency>
-
 		</dependencies>
 	</dependencyManagement>
 
@@ -153,14 +141,14 @@
 
 	<repositories>
 		<repository>
-			<id>JFrog</id>
-			<name>JFrog Snapshot Repository</name>
-			<url>http://oss.jfrog.org/artifactory/oss-snapshot-local/</url>
-		</repository>
-		<repository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
 			<url>https://repo.spring.io/milestone</url>
+		</repository>
+		<repository>
+			<id>JFrog</id>
+			<name>JFrog Snapshot Repository</name>
+			<url>http://oss.jfrog.org/artifactory/oss-snapshot-local/</url>
 		</repository>
 	</repositories>
 	<pluginRepositories>

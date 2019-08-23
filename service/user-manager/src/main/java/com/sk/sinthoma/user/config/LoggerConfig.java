@@ -1,4 +1,4 @@
-package com.sk.sinthoma.bff.dashboard.config;
+package com.sk.sinthoma.user.config;
 
 import org.springframework.context.annotation.Configuration;
 

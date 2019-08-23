@@ -125,6 +125,10 @@
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.sk.sinthoma</groupId>
+			<artifactId>core-logger</artifactId>
+		</dependency>
 	</dependencies>
 
 	<profiles>

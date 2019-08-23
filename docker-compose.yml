@@ -1,44 +1,38 @@
-version: "3.3"
+version: '3.3'
 services:
-    mongo:
-        image: mongo
-        restart: always
-        command: mongod
-        container_name: mongodb
-        ports:
-            - 8090:27017
-        volumes: 
-            - /data/db:/data/db
-        environment:
-            MONGO_INITDB_ROOT_USERNAME: root
-            MONGO_INITDB_ROOT_PASSWORD: example
-
-
-    mongo-express:
-        image: mongo-express
-        restart: always
-        ports:
-            - 8091:8091
-        environment:
-            ME_CONFIG_MONGODB_ADMINUSERNAME: root
-            ME_CONFIG_MONGODB_ADMINPASSWORD: example
-            VCAP_APP_HOST: 0.0.0.0
-            VCAP_APP_PORT: 8091
-            
-    user-manager:
-      image: shishirinsane/sinthoma/user-manager
-      ports:
-          - 8092:8092  
-      depends_on:
-          - mongo
-      restart: always
-#            
-#    sinthoma-bff:
-#        image: shishirinsane/sinthoma/sinthoma-bff
-#        ports:
-#            - 8093:8093
-#        links:
-#            - user-manager    
-#        build:
-#            context: ./service/user-manager
-#            dockerfile: Dockerfile
+  mongo:
+    image: mongo
+    restart: always
+    command: mongod
+    container_name: mongodb
+    ports:
+    - 8090:27017
+    volumes:
+    - /data/db:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+    - 8091:8091
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      VCAP_APP_HOST: 0.0.0.0
+      VCAP_APP_PORT: 8091
+  user-manager:
+    image: shishirinsane/sinthoma/user-manager
+    ports:
+    - 8092:8092
+    depends_on:
+    - mongo
+    restart: always
+  dashboard-bff:
+    image: shishirinsane/sinthoma/dashboard-bff
+    ports:
+    - 8094:8094
+    depends_on:
+    - user-manager
+    restart: always

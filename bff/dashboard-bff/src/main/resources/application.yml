@@ -2,6 +2,9 @@ server:
   port: 8094
   servlet:
     context-path: /sinthoma/dashboard-bff
+spring:
+  application:
+    name: dashboard-bff
 logging:
   file: ./dashboard-bff.log
   level:
@@ -16,7 +19,7 @@ management:
 app:
   services:
     user-manager:
-      uri: http://localhost:8092/sinthoma/user-manager
+      uri: http://user-manager:8092/sinthoma/user-manager
       resource: 
         user: /users
         search-by-username: /users/search/findByUserName?userName={userName}

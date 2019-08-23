@@ -7,7 +7,12 @@ logging:
   level:
     com.sk.sinthoma.bff: INFO
     org.springframework.aop.interceptor.PerformanceMonitorInterceptor: TRACE
-    org.springframework: DEBUG  
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'      
 app:
   services:
     user-manager:

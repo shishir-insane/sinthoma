@@ -17,6 +17,9 @@ package com.sk.sinthoma.core.logger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.sk.sinthoma.core.logger.filter.RequestAndResponseLoggingFilter;
 
 @Configuration
 public class LoggerConfiguration {
@@ -29,5 +32,10 @@ public class LoggerConfiguration {
     @Bean
     public LoggerAspect loggerAspect(Logger logger) {
 	return new LoggerAspect(logger);
+    }
+    
+    @Bean
+    public OncePerRequestFilter oncePerRequestFilter() {
+	return new RequestAndResponseLoggingFilter();
     }
 }

@@ -2,15 +2,15 @@
  * Swagger2Config.java
  * user-manager
  * Copyright 2019 Shishir Kumar
- * 
+ *
  * Licensed under the GNU Lesser General Public License v3.0
- * Permissions of this license are conditioned on making available complete 
- * source code of licensed works and modifications under the same license 
- * or the GNU GPLv3. Copyright and license notices must be preserved. 
- * 
- * Contributors provide an express grant of patent rights. However, a larger 
- * work using the licensed work through interfaces provided by the licensed 
- * work may be distributed under different terms and without source code for 
+ * Permissions of this license are conditioned on making available complete
+ * source code of licensed works and modifications under the same license
+ * or the GNU GPLv3. Copyright and license notices must be preserved.
+ *
+ * Contributors provide an express grant of patent rights. However, a larger
+ * work using the licensed work through interfaces provided by the licensed
+ * work may be distributed under different terms and without source code for
  * the larger work.
  */
 package com.sk.sinthoma.user.config;
@@ -19,7 +19,6 @@ import java.time.LocalDate;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.ResponseEntity;
 
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -28,13 +27,11 @@ import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.data.rest.configuration.SpringDataRestConfiguration;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 @Configuration
-@EnableSwagger2WebMvc
-@Import(SpringDataRestConfiguration.class)
+//@EnableSwagger2WebMvc
+//@Import(SpringDataRestConfiguration.class)
 public class Swagger2Config {
     @Bean
     public Docket userManagerApi() {

@@ -1,6 +1,6 @@
 /**
  * User.java
- * user-manager
+ * dashboard-bff
  * Copyright 2019 Shishir Kumar
  * 
  * Licensed under the GNU Lesser General Public License v3.0
@@ -19,16 +19,21 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode
-public class User implements Serializable {
+@JsonIgnoreProperties(ignoreUnknown = true)
+@ApiModel("User")
+public final class User implements Serializable {
 
     private static final long serialVersionUID = -4136222490310022268L;
     
-    private String userId;
+    private String userName;
     private String firstName;
     private String lastName;
     private String emailId;

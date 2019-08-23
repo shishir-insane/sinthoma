@@ -1,5 +1,5 @@
 /**
- * CoreLoggerConfig.java
+ * UserTest.java
  * dashboard-bff
  * Copyright 2019 Shishir Kumar
  * 
@@ -13,14 +13,23 @@
  * work may be distributed under different terms and without source code for 
  * the larger work.
  */
-package com.sk.sinthoma.bff.dashboard.config;
+package com.sk.sinthoma.bff.dashboard.model;
 
-import org.springframework.context.annotation.Configuration;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import com.sk.sinthoma.core.logger.EnableLogger;
+import org.junit.jupiter.api.Test;
 
-@Configuration
-@EnableLogger
-public class CoreLoggerConfig {
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.EqualsVerifierApi;
+import nl.jqno.equalsverifier.Warning;
 
+public class UserTest {
+
+    @Test
+    public void equalsContract() {
+	final EqualsVerifierApi<User> equalsUser = EqualsVerifier.forClass(User.class)
+		.suppress(Warning.NONFINAL_FIELDS);
+	assertNotNull(equalsUser);
+	equalsUser.verify();
+    }
 }

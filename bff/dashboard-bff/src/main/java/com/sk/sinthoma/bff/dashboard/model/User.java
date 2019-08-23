@@ -1,6 +1,6 @@
 /**
  * User.java
- * user-manager
+ * dashboard-bff
  * Copyright 2019 Shishir Kumar
  * 
  * Licensed under the GNU Lesser General Public License v3.0

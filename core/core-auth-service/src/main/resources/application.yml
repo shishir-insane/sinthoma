@@ -1,0 +1,31 @@
+server:
+  port: 8095
+  servlet:
+    context-path: /sinthoma/auth
+spring:
+  jackson:
+    mapper:
+      DEFAULT_VIEW_INCLUSION: true
+    serialization:
+      INDENT_OUTPUT: true
+      WRITE_DATES_AS_TIMESTAMPS: false
+    deserialization:
+      FAIL_ON_IGNORED_PROPERTIES: false
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+      ACCEPT_SINGLE_VALUE_AS_ARRAY: true
+    default-property-inclusion: NON_EMPTY
+  application:
+    name: auth-service
+logging:
+  file: ./auth-service.log
+  level:
+    com.sk.sinthoma.core.auth: INFO
+    org.springframework.aop.interceptor.PerformanceMonitorInterceptor: TRACE
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+app:
+  services:
+    user-manager:
+      uri: http://localhost:8092/sinthoma/user-manager
+      resource: 
+        user: /users
+        search-by-username: /users/search/findByUserName?userName={userName}

@@ -16,6 +16,7 @@
 package com.sk.sinthoma.user.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
@@ -34,11 +35,11 @@ import io.swagger.annotations.ApiParam;
 public interface UserRepository extends MongoRepository<User, String> {
 
     @ApiOperation("find all Users with given first names and last names")
-    List<User> findByFirstNameAndLastName(
+    Optional<List<User>> findByFirstNameAndLastName(
 	    @Param("firstName") @ApiParam(value = "First Name of the User") String firstName,
 	    @Param("lastName") @ApiParam(value = "Last Name of the User") String lastName);
 
     @ApiOperation("find single user with given User ID")
-    User findByUserName(@Param("userName") @ApiParam(value = "User Name of the User") String userName);
+    Optional<User> findByUsername(@Param("username") @ApiParam(value = "User Name of the User") String username);
 
 }

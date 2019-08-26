@@ -17,6 +17,7 @@ package com.sk.sinthoma.user.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.data.annotation.Id;
@@ -41,7 +42,7 @@ public final class User implements Serializable {
     @Id
     private String id;
     @Indexed(unique = true)
-    private String userName;
+    private String username;
     private String firstName;
     private String lastName;
     private String emailId;
@@ -52,4 +53,11 @@ public final class User implements Serializable {
 
     private Date createdOn;
     private Date lastLoggedOn;
+    
+    private List<String> roles;
+    
+    private boolean isAccountNonExpired;
+    private boolean isAccountNonLocked;
+    private boolean isCredentialsNonExpired;
+    private boolean isEnabled;
 }

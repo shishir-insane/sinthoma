@@ -18,6 +18,7 @@ package com.sk.sinthoma.user.unit.repository;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,14 +43,22 @@ public class UserRepositoryTest {
 	final User user = new User();
 	user.setFirstName("John");
 	user.setLastName("Doe");
+	user.setUsername("john.doe");
 	userRepository.save(user);
     }
 
     @Test
     public void testFindByFirstNameAndLastNameNotNulResult() {
-	final List<User> users = userRepository.findByFirstNameAndLastName("John", "Doe");
-	assertThat(users).isNotNull();
-	assertThat(users.size()).isEqualTo(1);
+	final Optional<List<User>> users = userRepository.findByFirstNameAndLastName("John", "Doe");
+	assertThat(users.isPresent()).isTrue();
+	assertThat(users.get().size()).isEqualTo(1);
+    }
+    
+    @Test
+    public void testFindByUsernameNotNulResult() {
+	final Optional<User> users = userRepository.findByUsername("john.doe");
+	assertThat(users.isPresent()).isTrue();
+	assertThat(users.get().getUsername()).isEqualTo("john.doe");
     }
 
     @AfterEach

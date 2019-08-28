@@ -17,16 +17,11 @@ package com.sk.sinthoma.core.auth.rest;
 
 import java.util.Optional;
 
-import org.springframework.data.repository.query.Param;
-
 import com.sk.sinthoma.core.auth.model.User;
-
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 
 public interface UserService {
 
-    @ApiOperation("find single user with given User ID")
-    Optional<User> findByUserName(@Param("userName") @ApiParam(value = "User Name of the User") String userName);
+    Optional<User> findByUserName(String userName);
 
+    User saveNewUser(User user);
 }

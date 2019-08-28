@@ -13,12 +13,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     private UserService userService;
 
     public CustomUserDetailsService(UserService users) {
-        this.userService = users;
+	this.userService = users;
     }
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        return this.userService.findByUserName(userName)
-            .orElseThrow(() -> new UsernameNotFoundException("Username: " + userName + " not found"));
+	return userService.findByUserName(userName)
+		.orElseThrow(() -> new UsernameNotFoundException("Username: " + userName + " not found"));
     }
 }

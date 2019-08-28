@@ -33,7 +33,7 @@ public @interface Loggable {
 
     String name() default "";
 
-    boolean entered() default false;
+    boolean entered() default true;
 
     boolean skipResult() default false;
 

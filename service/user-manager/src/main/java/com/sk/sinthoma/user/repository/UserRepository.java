@@ -23,6 +23,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
+import com.sk.sinthoma.core.logger.Loggable;
 import com.sk.sinthoma.user.model.User;
 
 import io.swagger.annotations.Api;
@@ -32,6 +33,7 @@ import io.swagger.annotations.ApiParam;
 @Api(tags = "User")
 @Repository
 @RepositoryRestResource(collectionResourceRel = "users", path = "users")
+@Loggable
 public interface UserRepository extends MongoRepository<User, String> {
 
     @ApiOperation("find all Users with given first names and last names")

@@ -1,11 +1,11 @@
-package com.sk.sinthoma.core.auth.jwt;
+package com.sk.sinthoma.core.auth.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import lombok.Data;
 
 @ConfigurationProperties(prefix = "app.jwt")
 @Data
-public class JwtProperties {
+public class JwtConfigProperties {
 
 	private String secretKey = "J5JC9dHp5K";
 

@@ -14,6 +14,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
+import com.sk.sinthoma.core.auth.config.JwtConfigProperties;
+import com.sk.sinthoma.core.auth.exception.InvalidJwtAuthenticationException;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
@@ -23,7 +26,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Component
 public class JwtTokenProvider {
     @Autowired
-    JwtProperties jwtProperties;
+    JwtConfigProperties jwtConfigProperties;
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -32,14 +35,14 @@ public class JwtTokenProvider {
 
     @PostConstruct
     protected void init() {
-	secretKey = Base64.getEncoder().encodeToString(jwtProperties.getSecretKey().getBytes());
+	secretKey = Base64.getEncoder().encodeToString(jwtConfigProperties.getSecretKey().getBytes());
     }
 
     public String createToken(String username, List<String> roles) {
 	Claims claims = Jwts.claims().setSubject(username);
 	claims.put("roles", roles);
 	Date now = new Date();
-	Date validity = new Date(now.getTime() + jwtProperties.getValidityInMs());
+	Date validity = new Date(now.getTime() + jwtConfigProperties.getValidityInMs());
 	return Jwts.builder()//
 		.setClaims(claims)//
 		.setIssuedAt(now)//

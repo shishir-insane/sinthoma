@@ -20,42 +20,38 @@ import static java.util.stream.Collectors.toList;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import io.swagger.annotations.ApiModel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode
-@ApiModel("User")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
+@Document(collection = "users.auth")
 public final class User implements UserDetails, Serializable {
 
     private static final long serialVersionUID = -1383662780029565743L;
 
+    @Id
     private String id;
+    
+    @Indexed(unique = true)
     private String username;
-    private String firstName;
-    private String lastName;
+    
     private String emailId;
     private String password;
-    private String imagePath;
-
-    private Map<String, String> userSettings;
-
-    private Date createdOn;
-    private Date lastLoggedOn;
     
     private boolean isAccountNonExpired;
     private boolean isAccountNonLocked;
@@ -65,10 +61,8 @@ public final class User implements UserDetails, Serializable {
     @Builder.Default
     private List<String> roles = new ArrayList<>();
 
-    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 	 return this.roles.stream().map(SimpleGrantedAuthority::new).collect(toList());
-
     }
 }

@@ -13,7 +13,7 @@
  * work may be distributed under different terms and without source code for
  * the larger work.
  */
-package com.sk.sinthoma.core.auth.rest;
+package com.sk.sinthoma.core.auth.service;
 
 import java.util.Optional;
 
@@ -21,7 +21,8 @@ import com.sk.sinthoma.core.auth.model.User;
 
 public interface UserService {
 
-    Optional<User> findByUserName(String userName);
-
+    Optional<User> findByUsername(String username);
+    
     User saveNewUser(User user);
+
 }

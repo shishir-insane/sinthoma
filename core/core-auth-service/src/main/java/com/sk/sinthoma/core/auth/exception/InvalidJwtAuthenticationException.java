@@ -1,4 +1,4 @@
-package com.sk.sinthoma.core.auth.jwt;
+package com.sk.sinthoma.core.auth.exception;
 
 import org.springframework.security.core.AuthenticationException;
 

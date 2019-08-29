@@ -37,18 +37,18 @@ public class UserRepositoryTest {
     @Autowired
     private UserAuthRepository userAuthRepository;
 
-    private static final String JOHN_DOE = "john.doe";
+    private static final String JANE_DOE = "jane.doe";
 
     @BeforeEach
     public void init() {
-	userAuthRepository.save(User.builder().username(JOHN_DOE).build());
+	userAuthRepository.save(User.builder().username(JANE_DOE).build());
     }
 
     @Test
     public void testFindByUsernameNotNulResult() {
-	final Optional<User> users = userAuthRepository.findByUsername(JOHN_DOE);
+	final Optional<User> users = userAuthRepository.findByUsername(JANE_DOE);
 	assertThat(users.isPresent()).isTrue();
-	assertThat(users.get().getUsername()).isEqualTo(JOHN_DOE);
+	assertThat(users.get().getUsername()).isEqualTo(JANE_DOE);
     }
 
     @AfterEach

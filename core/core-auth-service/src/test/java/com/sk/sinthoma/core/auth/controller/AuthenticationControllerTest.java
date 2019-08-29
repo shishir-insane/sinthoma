@@ -1,48 +1,43 @@
 package com.sk.sinthoma.core.auth.controller;
 
-import java.util.Optional;
-
-import org.junit.Before;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sk.sinthoma.core.auth.model.User;
-import com.sk.sinthoma.core.auth.service.UserService;
-
-import static org.mockito.BDDMockito.any;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = AuthenticationController.class)
-@RunWith(SpringRunner.class)
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.security.test.context.support.WithUserDetails;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class AuthenticationControllerTest {
 
-    @MockBean
-    UserService userService;
-
     @Autowired
-    ObjectMapper objectMapper;
+    private WebApplicationContext context;
 
-    @Autowired
-    MockMvc mockMvc;
+    private MockMvc mvc;
 
-    @Before
-    public void setUp() {
-//	given(this.userService.findById(1L)).willReturn(Optional.of(User.builder().username("john.doe").build()));
-//
-//	given(this.vehicles.findById(2L)).willReturn(Optional.empty());
-//
-//	given(this.vehicles.save(any(Vehicle.class))).willReturn(Vehicle.builder().name("test").build());
-//
-//	doNothing().when(this.vehicles).delete(any(Vehicle.class));
+    @BeforeEach
+    public void setup() {
+	mvc = MockMvcBuilders.webAppContextSetup(context).apply(springSecurity()).build();
+    }
+
+    @Test
+    public void givenRequestOnCurrentUser_shouldFailWith403() throws Exception {
+	mvc.perform(get("/me").contentType(MediaType.APPLICATION_JSON)).andExpect(status().is(403));
+    }
+    
+    @Test
+    @WithMockUser(username = "john.doe", roles = "USER")
+    public void givenRequestOnCurrentUser_shouldFailWith200() throws Exception {
+	mvc.perform(get("/me").contentType(MediaType.APPLICATION_JSON)).andExpect(status().is2xxSuccessful());
     }
 
 }

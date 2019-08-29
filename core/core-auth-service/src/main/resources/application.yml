@@ -25,10 +25,3 @@ logging:
     com.sk.sinthoma.core.auth: INFO
     org.springframework.aop.interceptor.PerformanceMonitorInterceptor: TRACE
     org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
-app:
-  services:
-    user-manager:
-      uri: http://localhost:8092/sinthoma/user-manager
-      resource: 
-        user: /users
-        search-by-username: /users/search/findByUsername?username={userName}

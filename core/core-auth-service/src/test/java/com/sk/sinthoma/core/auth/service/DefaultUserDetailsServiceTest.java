@@ -11,10 +11,10 @@ import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.sk.sinthoma.core.auth.model.User;
@@ -24,17 +24,21 @@ import com.sk.sinthoma.core.auth.repository.UserAuthRepository;
 public class DefaultUserDetailsServiceTest {
 
     private static final String JOHN_DOE = "john.doe";
+    private static final String INVALID_USER = "invalid.user";
+    private static final String PASSWORD = "password";
 
     @Autowired
     private DefaultUserDetailsService userService;
 
-    @Mock
+    @MockBean
     private UserAuthRepository userAuthRepository;
+
+    private User user = null;
 
     @BeforeEach
     public void init() {
-	User user = User.builder().username(JOHN_DOE).build();
-	when(userAuthRepository.findByUsername(Mockito.anyString())).thenReturn(Optional.of(user));
+	user = User.builder().username(JOHN_DOE).password(PASSWORD).build();
+	when(userAuthRepository.findByUsername(JOHN_DOE)).thenReturn(Optional.of(user));
 	when(userAuthRepository.save(user)).thenReturn(user);
     }
 
@@ -55,7 +59,7 @@ public class DefaultUserDetailsServiceTest {
     @Test
     public void testLoadUserByUsernameWithInvalidUsername() {
 	assertThrows(UsernameNotFoundException.class, () -> {
-	    userService.loadUserByUsername("invaliduser");
+	    userService.loadUserByUsername(INVALID_USER);
 	});
     }
 
@@ -75,29 +79,28 @@ public class DefaultUserDetailsServiceTest {
 
     @Test
     public void testFindByUsernameWithInvalidUsername() {
-	Optional<User> user = userService.findByUsername("invaliduser");
+	Optional<User> user = userService.findByUsername(INVALID_USER);
 	assertThat(user).isEmpty();
     }
 
     @Test
     public void testSaveNewUserWithValidUser() {
-	User user = userService.saveNewUser(User.builder().username(JOHN_DOE).password("password").build());
-	assertNotNull(user);
-	assertThat(JOHN_DOE).isEqualTo(user.getUsername());
+	User responseUser = userService.saveNewUser(user);
+	assertNotNull(responseUser);
+	assertThat(JOHN_DOE).isEqualTo(responseUser.getUsername());
     }
-    
+
     @Test
     public void testSaveNewUserWithEmptyUserName() {
 	assertThrows(IllegalArgumentException.class, () -> {
-	    userService.saveNewUser(User.builder().username(StringUtils.EMPTY).password("password").build());
+	    userService.saveNewUser(User.builder().username(StringUtils.EMPTY).password(PASSWORD).build());
 	});
     }
-    
+
     @Test
     public void testSaveNewUserWithEmptyPassword() {
 	assertThrows(IllegalArgumentException.class, () -> {
 	    userService.saveNewUser(User.builder().username(JOHN_DOE).password(StringUtils.EMPTY).build());
 	});
     }
-
 }

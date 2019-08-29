@@ -36,13 +36,13 @@ public class AuthenticationControllerTest {
 
     @Before
     public void setUp() {
-	given(this.userService.findById(1L)).willReturn(Optional.of(User.builder().username("john.doe").build()));
-
-	given(this.vehicles.findById(2L)).willReturn(Optional.empty());
-
-	given(this.vehicles.save(any(Vehicle.class))).willReturn(Vehicle.builder().name("test").build());
-
-	doNothing().when(this.vehicles).delete(any(Vehicle.class));
+//	given(this.userService.findById(1L)).willReturn(Optional.of(User.builder().username("john.doe").build()));
+//
+//	given(this.vehicles.findById(2L)).willReturn(Optional.empty());
+//
+//	given(this.vehicles.save(any(Vehicle.class))).willReturn(Vehicle.builder().name("test").build());
+//
+//	doNothing().when(this.vehicles).delete(any(Vehicle.class));
     }
 
 }

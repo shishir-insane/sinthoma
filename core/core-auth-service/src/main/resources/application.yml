@@ -5,7 +5,7 @@ server:
 spring:
   data:
     mongodb:
-      uri: mongodb://app-owner:App0wn3r@mongo/sinthoma
+      uri: mongodb://app-owner:App0wn3r@localhost:8090/sinthoma
   jackson:
     mapper:
       DEFAULT_VIEW_INCLUSION: true

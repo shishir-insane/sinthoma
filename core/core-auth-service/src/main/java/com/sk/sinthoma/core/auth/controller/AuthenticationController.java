@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.common.collect.ImmutableMap;
 import com.sk.sinthoma.core.auth.jwt.JwtTokenProvider;
 import com.sk.sinthoma.core.auth.model.AuthenticationRequest;
+import com.sk.sinthoma.core.auth.model.User;
 import com.sk.sinthoma.core.auth.service.UserService;
 
 @RestController
@@ -53,9 +54,10 @@ public class AuthenticationController {
     }
     
     @GetMapping("/me")
-    public ResponseEntity<Map<Object, Object>> currentUser(@AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity<Map<Object, Object>> currentUser(@AuthenticationPrincipal User userDetails) {
 	final Map<Object, Object> model = new HashMap<>();
 	model.put("username", userDetails.getUsername());
+	model.put("emailId", userDetails.getEmailId());
 	model.put("roles", userDetails.getAuthorities().stream().map(a -> ((GrantedAuthority) a).getAuthority())
 		.collect(toList()));
 	return ok(model);

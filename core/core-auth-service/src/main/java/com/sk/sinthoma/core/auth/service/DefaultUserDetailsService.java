@@ -3,7 +3,6 @@ package com.sk.sinthoma.core.auth.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ public class DefaultUserDetailsService implements UserDetailsService, UserServic
     private UserAuthRepository repository;
 
     @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+    public User loadUserByUsername(String userName) throws UsernameNotFoundException {
 	return findByUsername(userName)
 		.orElseThrow(() -> new UsernameNotFoundException("Username: " + userName + " not found"));
     }

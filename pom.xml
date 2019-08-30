@@ -25,6 +25,9 @@
 		<net.serenity-bdd.version>2.0.67</net.serenity-bdd.version>
 		<spring-cloud.version>Hoxton.M2</spring-cloud.version>
 		<org.aspectj.aspectweaver.version>1.9.4</org.aspectj.aspectweaver.version>
+		<io.jsonwebtoken.version>0.9.1</io.jsonwebtoken.version>
+		<com.google.guava>28.0-jre</com.google.guava>
+		<maven.surefire.version>2.19.1</maven.surefire.version>
 		<maven.test.skip>false</maven.test.skip>
 	</properties>
 
@@ -38,9 +41,9 @@
 
 	<modules>
 		<module>core/sinthoma-core-base</module>
-		<module>web/sinthoma-web</module>
 		<module>bff/sinthoma-bff-base</module>
 		<module>service/sinthoma-service-base</module>
+		<module>web/sinthoma-web</module>
 	</modules>
 
 	<dependencyManagement>
@@ -96,6 +99,16 @@
 				<artifactId>core-logger</artifactId>
 				<version>${sinthoma.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt</artifactId>
+				<version>${io.jsonwebtoken.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${com.google.guava}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -126,6 +139,9 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
 			</plugin>
 		</plugins>
 		<pluginManagement>

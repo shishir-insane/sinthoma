@@ -1,17 +1,7 @@
 /**
- * Loggable.java
- * core-logger
+ * Loggable.java - core-logger
  * Copyright 2019 Shishir Kumar
- *
  * Licensed under the GNU Lesser General Public License v3.0
- * Permissions of this license are conditioned on making available complete
- * source code of licensed works and modifications under the same license
- * or the GNU GPLv3. Copyright and license notices must be preserved.
- *
- * Contributors provide an express grant of patent rights. However, a larger
- * work using the licensed work through interfaces provided by the licensed
- * work may be distributed under different terms and without source code for
- * the larger work.
  */
 package com.sk.sinthoma.core.logger;
 
@@ -29,19 +19,59 @@ import org.springframework.boot.logging.LogLevel;
 @Documented
 public @interface Loggable {
 
+    /**
+     * Value.
+     *
+     * @return the log level
+     */
     LogLevel value() default LogLevel.INFO;
 
+    /**
+     * Name.
+     *
+     * @return the string
+     */
     String name() default "";
 
-    boolean entered() default false;
+    /**
+     * Entered.
+     *
+     * @return true, if successful
+     */
+    boolean entered() default true;
 
+    /**
+     * Skip result.
+     *
+     * @return true, if successful
+     */
     boolean skipResult() default false;
 
+    /**
+     * Skip args.
+     *
+     * @return true, if successful
+     */
     boolean skipArgs() default false;
 
+    /**
+     * Ignore.
+     *
+     * @return the class<? extends throwable>[]
+     */
     Class<? extends Throwable>[] ignore() default {};
 
+    /**
+     * Warn over.
+     *
+     * @return the long
+     */
     long warnOver() default -1;
 
+    /**
+     * Warn unit.
+     *
+     * @return the time unit
+     */
     TimeUnit warnUnit() default TimeUnit.MINUTES;
 }

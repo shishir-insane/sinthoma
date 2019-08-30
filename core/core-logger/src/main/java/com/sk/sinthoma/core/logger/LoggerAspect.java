@@ -1,17 +1,7 @@
 /**
- * LoggerAspect.java
- * core-logger
+ * LoggerAspect.java - core-logger
  * Copyright 2019 Shishir Kumar
- *
  * Licensed under the GNU Lesser General Public License v3.0
- * Permissions of this license are conditioned on making available complete
- * source code of licensed works and modifications under the same license
- * or the GNU GPLv3. Copyright and license notices must be preserved.
- *
- * Contributors provide an express grant of patent rights. However, a larger
- * work using the licensed work through interfaces provided by the licensed
- * work may be distributed under different terms and without source code for
- * the larger work.
  */
 package com.sk.sinthoma.core.logger;
 
@@ -47,12 +37,20 @@ public class LoggerAspect {
     private Set<WarnPoint> warnPoints;
     private ScheduledExecutorService warnService;
 
+    /**
+     * Instantiates a new logger aspect.
+     *
+     * @param logger the logger
+     */
     @Autowired
     public LoggerAspect(Logger logger) {
 	logMsgArgsGenerator = new LoggerMsgArgsGenerator();
 	this.logger = logger;
     }
 
+    /**
+     * Construct.
+     */
     @PostConstruct
     protected void construct() {
 	warnPoints = new ConcurrentSkipListSet<>();
@@ -69,29 +67,66 @@ public class LoggerAspect {
 	}, 1L, 1L, TimeUnit.SECONDS);
     }
 
+    /**
+     * Public method.
+     */
     @Pointcut("execution(public * *(..))" + " && !execution(String *.toString())" + " && !execution(int *.hashCode())"
 	    + " && !execution(boolean *.canEqual(Object))" + " && !execution(boolean *.equals(Object))")
     protected void publicMethod() {
     }
 
+    /**
+     * Loggable method.
+     *
+     * @param loggable the loggable
+     */
     @Pointcut("@annotation(loggable)")
     protected void loggableMethod(Loggable loggable) {
     }
 
+    /**
+     * Loggable class.
+     *
+     * @param loggable the loggable
+     */
     @Pointcut("@within(loggable)")
     protected void loggableClass(Loggable loggable) {
     }
 
+    /**
+     * Log execution method.
+     *
+     * @param joinPoint the join point
+     * @param loggable  the loggable
+     * @return the object
+     * @throws Throwable the throwable
+     */
     @Around(value = "publicMethod() && loggableMethod(loggable)", argNames = "joinPoint,loggable")
     public Object logExecutionMethod(ProceedingJoinPoint joinPoint, Loggable loggable) throws Throwable {
 	return logMethod(joinPoint, loggable);
     }
 
+    /**
+     * Log execution class.
+     *
+     * @param joinPoint the join point
+     * @param loggable  the loggable
+     * @return the object
+     * @throws Throwable the throwable
+     */
     @Around(value = "publicMethod() && loggableClass(loggable) && !loggableMethod(com.sk.sinthoma.core.logger.Loggable)", argNames = "joinPoint,loggable")
     public Object logExecutionClass(ProceedingJoinPoint joinPoint, Loggable loggable) throws Throwable {
 	return logMethod(joinPoint, loggable);
     }
-    
+
+    /**
+     * Log method.
+     *
+     * @param joinPoint the join point
+     * @param loggable  the loggable
+     * @return the object
+     * @throws Throwable the throwable
+     */
     public Object logMethod(ProceedingJoinPoint joinPoint, Loggable loggable) throws Throwable {
 	final long start = System.nanoTime();
 	WarnPoint warnPoint = null;
@@ -103,7 +138,8 @@ public class LoggerAspect {
 	}
 
 	if (loggable.entered()) {
-	    log(loggable.value(), "#{}({}): entered", joinPoint, loggable, logMsgArgsGenerator.enter(joinPoint, loggable));
+	    log(loggable.value(), "#{}({}): entered", joinPoint, loggable,
+		    logMsgArgsGenerator.enter(joinPoint, loggable));
 	}
 
 	try {
@@ -134,6 +170,15 @@ public class LoggerAspect {
 	}
     }
 
+    /**
+     * Log.
+     *
+     * @param level     the level
+     * @param message   the message
+     * @param joinPoint the join point
+     * @param loggable  the loggable
+     * @param args      the args
+     */
     private void log(LogLevel level, String message, ProceedingJoinPoint joinPoint, Loggable loggable, Object... args) {
 	if (loggable.name().isEmpty()) {
 	    logger.log(level, ((MethodSignature) joinPoint.getSignature()).getMethod().getDeclaringClass(), message,
@@ -143,6 +188,13 @@ public class LoggerAspect {
 	}
     }
 
+    /**
+     * Checks if is level enabled.
+     *
+     * @param joinPoint the join point
+     * @param loggable  the loggable
+     * @return true, if is level enabled
+     */
     private boolean isLevelEnabled(ProceedingJoinPoint joinPoint, Loggable loggable) {
 	return loggable.name().isEmpty()
 		? logger.isEnabled(LogLevel.WARN,
@@ -150,11 +202,25 @@ public class LoggerAspect {
 		: logger.isEnabled(LogLevel.WARN, loggable.name());
     }
 
+    /**
+     * Checks if is over.
+     *
+     * @param nano     the nano
+     * @param loggable the loggable
+     * @return true, if is over
+     */
     private boolean isOver(long nano, Loggable loggable) {
 	return (loggable.warnOver() >= 0)
 		&& (TimeUnit.NANOSECONDS.toMillis(nano) > loggable.warnUnit().toMillis(loggable.warnOver()));
     }
 
+    /**
+     * Contains.
+     *
+     * @param array the array
+     * @param exp   the exp
+     * @return true, if successful
+     */
     private boolean contains(Class<? extends Throwable>[] array, Throwable exp) {
 	boolean contains = false;
 	for (final Class<? extends Throwable> type : array) {
@@ -166,6 +232,13 @@ public class LoggerAspect {
 	return contains;
     }
 
+    /**
+     * Instance of.
+     *
+     * @param child  the child
+     * @param parent the parent
+     * @return true, if successful
+     */
     private boolean instanceOf(Class<?> child, Class<?> parent) {
 	boolean instance = child.equals(parent)
 		|| ((child.getSuperclass() != null) && instanceOf(child.getSuperclass(), parent));
@@ -180,8 +253,25 @@ public class LoggerAspect {
 	return instance;
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
     @EqualsAndHashCode(of = "point")
+    
+    /**
+     * Instantiates a new warn point.
+     *
+     * @param point    the point
+     * @param loggable the loggable
+     * @param start    the start
+     */
     @AllArgsConstructor
+    
+    /**
+     * Gets the start.
+     *
+     * @return the start
+     */
     @Getter
     protected static class WarnPoint implements Comparable<WarnPoint> {
 
@@ -189,6 +279,9 @@ public class LoggerAspect {
 	private final Loggable loggable;
 	private final long start;
 
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
 	@Override
 	public int compareTo(WarnPoint obj) {
 	    return Long.compare(obj.getStart(), start);

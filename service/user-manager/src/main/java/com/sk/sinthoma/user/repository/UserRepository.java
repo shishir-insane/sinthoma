@@ -16,12 +16,14 @@
 package com.sk.sinthoma.user.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
+import com.sk.sinthoma.core.logger.Loggable;
 import com.sk.sinthoma.user.model.User;
 
 import io.swagger.annotations.Api;
@@ -31,14 +33,15 @@ import io.swagger.annotations.ApiParam;
 @Api(tags = "User")
 @Repository
 @RepositoryRestResource(collectionResourceRel = "users", path = "users")
+@Loggable
 public interface UserRepository extends MongoRepository<User, String> {
 
     @ApiOperation("find all Users with given first names and last names")
-    List<User> findByFirstNameAndLastName(
+    Optional<List<User>> findByFirstNameAndLastName(
 	    @Param("firstName") @ApiParam(value = "First Name of the User") String firstName,
 	    @Param("lastName") @ApiParam(value = "Last Name of the User") String lastName);
 
     @ApiOperation("find single user with given User ID")
-    User findByUserName(@Param("userName") @ApiParam(value = "User Name of the User") String userName);
+    Optional<User> findByUsername(@Param("username") @ApiParam(value = "User Name of the User") String username);
 
 }

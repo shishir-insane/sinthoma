@@ -1,0 +1,7 @@
+/.apt_generated/
+/.apt_generated_tests/
+/.settings/
+*.springBeans
+*.factorypath
+*.log.2019-08-26.0.gz
+*.log.*.gz

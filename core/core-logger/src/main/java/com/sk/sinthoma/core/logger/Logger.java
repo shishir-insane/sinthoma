@@ -1,17 +1,7 @@
 /**
- * Logger.java
- * core-logger
+ * Logger.java - core-logger
  * Copyright 2019 Shishir Kumar
- *
  * Licensed under the GNU Lesser General Public License v3.0
- * Permissions of this license are conditioned on making available complete
- * source code of licensed works and modifications under the same license
- * or the GNU GPLv3. Copyright and license notices must be preserved.
- *
- * Contributors provide an express grant of patent rights. However, a larger
- * work using the licensed work through interfaces provided by the licensed
- * work may be distributed under different terms and without source code for
- * the larger work.
  */
 package com.sk.sinthoma.core.logger;
 
@@ -24,22 +14,60 @@ import org.springframework.stereotype.Component;
 @Component
 public final class Logger {
 
+    /**
+     * Log.
+     *
+     * @param level   the level
+     * @param clazz   the clazz
+     * @param message the message
+     * @param args    the args
+     */
     public void log(LogLevel level, Class<?> clazz, String message, Object... args) {
 	log(LoggerFactory.getLogger(clazz), level, message, args);
     }
 
+    /**
+     * Log.
+     *
+     * @param level   the level
+     * @param name    the name
+     * @param message the message
+     * @param args    the args
+     */
     public void log(LogLevel level, String name, String message, Object... args) {
 	log(LoggerFactory.getLogger(name), level, message, args);
     }
 
+    /**
+     * Checks if is enabled.
+     *
+     * @param level the level
+     * @param clazz the clazz
+     * @return true, if is enabled
+     */
     public boolean isEnabled(LogLevel level, Class<?> clazz) {
 	return isEnabled(LoggerFactory.getLogger(clazz), level);
     }
 
+    /**
+     * Checks if is enabled.
+     *
+     * @param level the level
+     * @param name  the name
+     * @return true, if is enabled
+     */
     public boolean isEnabled(LogLevel level, String name) {
 	return isEnabled(LoggerFactory.getLogger(name), level);
     }
 
+    /**
+     * Log.
+     *
+     * @param logger  the logger
+     * @param level   the level
+     * @param message the message
+     * @param args    the args
+     */
     private void log(org.slf4j.Logger logger, LogLevel level, String message, Object... args) {
 	Objects.requireNonNull(level, "LogLevel must not be null.");
 	switch (level) {
@@ -64,6 +92,13 @@ public final class Logger {
 	}
     }
 
+    /**
+     * Checks if is enabled.
+     *
+     * @param logger the logger
+     * @param level  the level
+     * @return true, if is enabled
+     */
     private boolean isEnabled(org.slf4j.Logger logger, LogLevel level) {
 	Objects.requireNonNull(level, "LogLevel must not be null.");
 	switch (level) {

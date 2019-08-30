@@ -1,17 +1,7 @@
 /**
- * DefaultUserManagerService.java
- * dashboard-bff
+ * DefaultUserManagerService.java - dashboard-bff
  * Copyright 2019 Shishir Kumar
- * 
  * Licensed under the GNU Lesser General Public License v3.0
- * Permissions of this license are conditioned on making available complete 
- * source code of licensed works and modifications under the same license 
- * or the GNU GPLv3. Copyright and license notices must be preserved. 
- * 
- * Contributors provide an express grant of patent rights. However, a larger 
- * work using the licensed work through interfaces provided by the licensed 
- * work may be distributed under different terms and without source code for 
- * the larger work.
  */
 package com.sk.sinthoma.bff.dashboard.service;
 
@@ -38,6 +28,9 @@ public class DefaultUserManagerService implements UserManagerService {
     @Autowired
     private RestTemplate restTemplate;
 
+    /* (non-Javadoc)
+     * @see com.sk.sinthoma.bff.dashboard.service.UserManagerService#login(com.sk.sinthoma.bff.dashboard.model.User)
+     */
     @Override
     public User login(User user) {
 	if (StringUtils.isEmpty(user.getUserName()) || StringUtils.isEmpty(user.getPassword())) {

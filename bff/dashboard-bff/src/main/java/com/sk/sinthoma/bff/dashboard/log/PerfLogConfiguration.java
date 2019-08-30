@@ -1,17 +1,7 @@
 /**
- * PerfLogConfiguration.java
- * dashboard-bff
+ * PerfLogConfiguration.java - dashboard-bff
  * Copyright 2019 Shishir Kumar
- * 
  * Licensed under the GNU Lesser General Public License v3.0
- * Permissions of this license are conditioned on making available complete 
- * source code of licensed works and modifications under the same license 
- * or the GNU GPLv3. Copyright and license notices must be preserved. 
- * 
- * Contributors provide an express grant of patent rights. However, a larger 
- * work using the licensed work through interfaces provided by the licensed 
- * work may be distributed under different terms and without source code for 
- * the larger work.
  */
 package com.sk.sinthoma.bff.dashboard.log;
 
@@ -33,16 +23,29 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PerfLogConfiguration {
 
+    /**
+     * Monitor.
+     */
     @Pointcut("execution(* com.sk.sinthoma.bff.dashboard.*.*.*(..))")
     public void monitor() {
 	log.info("Pointcut defined for execution(* com.sk.sinthoma.bff.dashboard.*.*.*(..))");
     }
 
+    /**
+     * Performance monitor interceptor.
+     *
+     * @return the performance monitor interceptor
+     */
     @Bean
     public PerformanceMonitorInterceptor performanceMonitorInterceptor() {
 	return new PerformanceMonitorInterceptor(false);
     }
 
+    /**
+     * Performance monitor advisor.
+     *
+     * @return the advisor
+     */
     @Bean
     public Advisor performanceMonitorAdvisor() {
 	final AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();

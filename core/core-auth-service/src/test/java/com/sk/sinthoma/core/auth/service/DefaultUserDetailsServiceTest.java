@@ -1,10 +1,7 @@
 /**
- * DefaultUserDetailsServiceTest.java
- * core-auth-service
+ * DefaultUserDetailsServiceTest.java - core-auth-service
  * Copyright 2019 Shishir Kumar
  * Licensed under the GNU Lesser General Public License v3.0
- * 
- * 
  */
 package com.sk.sinthoma.core.auth.service;
 

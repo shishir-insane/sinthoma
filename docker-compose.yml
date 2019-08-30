@@ -29,6 +29,13 @@ services:
     depends_on:
     - mongo
     restart: always
+  core-auth-service:
+    image: shishirinsane/sinthoma/core-auth-service
+    ports:
+    - 8095:8095
+    depends_on:
+    - mongo
+    restart: always
 #  dashboard-bff:
 #    image: shishirinsane/sinthoma/dashboard-bff
 #    ports:

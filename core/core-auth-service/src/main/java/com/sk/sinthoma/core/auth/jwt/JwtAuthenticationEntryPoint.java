@@ -1,3 +1,8 @@
+/**
+ * JwtAuthenticationEntryPoint.java - core-auth-service
+ * Copyright 2019 Shishir Kumar
+ * Licensed under the GNU Lesser General Public License v3.0
+ */
 package com.sk.sinthoma.core.auth.jwt;
 
 import java.io.IOException;
@@ -14,6 +19,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.springframework.security.web.AuthenticationEntryPoint#commence(javax.
+     * servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse,
+     * org.springframework.security.core.AuthenticationException)
+     */
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response,
 	    AuthenticationException authException) throws IOException, ServletException {

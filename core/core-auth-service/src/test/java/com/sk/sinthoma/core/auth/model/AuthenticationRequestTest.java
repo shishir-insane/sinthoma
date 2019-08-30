@@ -1,3 +1,8 @@
+/**
+ * AuthenticationRequestTest.java - core-auth-service
+ * Copyright 2019 Shishir Kumar
+ * Licensed under the GNU Lesser General Public License v3.0
+ */
 package com.sk.sinthoma.core.auth.model;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -10,6 +15,9 @@ import nl.jqno.equalsverifier.Warning;
 
 public class AuthenticationRequestTest {
 
+    /**
+     * Equals contract.
+     */
     @Test
     public void equalsContract() {
 	final EqualsVerifierApi<AuthenticationRequest> equalsUser = EqualsVerifier.forClass(AuthenticationRequest.class)

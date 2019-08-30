@@ -1,0 +1,22 @@
+title Get Data on Dashboard for Symptoms and Appointments for a User
+
+User->Web:HTTP Request
+Web-->Core Auth Service:REST Call to get token
+Core Auth Service-->Web:Returns JWT Auth Token with User Authorities
+Web->Dashboard BFF:Get Data for Dashboard (with JWT Auth Token)
+Dashboard BFF-->Core Auth Service:Validate JWT Auth Token
+Core Auth Service-->Dashboard BFF:Validation Results
+Dashboard BFF->User Manager API:Get User Data
+User Manager API-->Core Auth Service:Validate Auth Token
+Core Auth Service-->User Manager API:Validation Results
+User Manager API->Dashboard BFF:User Details
+Dashboard BFF->Symptom Manager API:Get Symptom Data
+Symptom Manager API-->Core Auth Service:Validate Auth Token
+Core Auth Service-->Symptom Manager API:Validation Results
+Symptom Manager API->Dashboard BFF:Symptom Details
+Dashboard BFF->Appointment Manager API:Get Appointment Data
+Appointment Manager API-->Core Auth Service:Validate Auth Token
+Core Auth Service-->Appointment Manager API:Validation Results
+Appointment Manager API->Dashboard BFF:Appointment Details
+Dashboard BFF->Web:Orchestrated Data for Dashboard
+Web->User:Display Data on Dashboard

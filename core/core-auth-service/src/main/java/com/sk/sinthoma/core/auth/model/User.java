@@ -1,17 +1,7 @@
 /**
- * User.java
- * user-manager
+ * User.java - core-auth-service
  * Copyright 2019 Shishir Kumar
- * 
  * Licensed under the GNU Lesser General Public License v3.0
- * Permissions of this license are conditioned on making available complete 
- * source code of licensed works and modifications under the same license 
- * or the GNU GPLv3. Copyright and license notices must be preserved. 
- * 
- * Contributors provide an express grant of patent rights. However, a larger 
- * work using the licensed work through interfaces provided by the licensed 
- * work may be distributed under different terms and without source code for 
- * the larger work.
  */
 package com.sk.sinthoma.core.auth.model;
 
@@ -35,34 +25,55 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Instantiates a new user.
+ */
 @Data
+
+/*
+ * (non-Javadoc)
+ * 
+ * @see java.lang.Object#hashCode()
+ */
 @EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown = true)
+
+/*
+ * (non-Javadoc)
+ * 
+ * @see java.lang.Object#toString()
+ */
 @Builder
-@Document(collection = "users.auth")
+@Document(collection = "userService.auth")
 public final class User implements UserDetails, Serializable {
 
     private static final long serialVersionUID = -1383662780029565743L;
 
     @Id
     private String id;
-    
+
     @Indexed(unique = true)
     private String username;
-    
+
     private String emailId;
     private String password;
-    
+
     private boolean isAccountNonExpired;
     private boolean isAccountNonLocked;
     private boolean isCredentialsNonExpired;
     private boolean isEnabled;
-    
+
     @Builder.Default
     private List<String> roles = new ArrayList<>();
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.springframework.security.core.userdetails.UserDetails#getAuthorities()
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-	 return this.roles.stream().map(SimpleGrantedAuthority::new).collect(toList());
+	return this.roles.stream().map(SimpleGrantedAuthority::new).collect(toList());
     }
 }

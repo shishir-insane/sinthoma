@@ -1,3 +1,8 @@
+/**
+ * MongoDBIndexConfig.java - core-auth-service
+ * Copyright 2019 Shishir Kumar
+ * Licensed under the GNU Lesser General Public License v3.0
+ */
 package com.sk.sinthoma.core.auth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +29,13 @@ public class MongoDBIndexConfig {
     @Autowired
     private MongoMappingContext mongoMappingContext;
 
+    /**
+     * Inits the indices after startup.
+     */
     @EventListener(ApplicationReadyEvent.class)
     public void initIndicesAfterStartup() {
-	IndexOperations indexOps = mongoTemplate.indexOps(User.class);
-	IndexResolver resolver = new MongoPersistentEntityIndexResolver(mongoMappingContext);
+	final IndexOperations indexOps = mongoTemplate.indexOps(User.class);
+	final IndexResolver resolver = new MongoPersistentEntityIndexResolver(mongoMappingContext);
 	resolver.resolveIndexFor(User.class).forEach(indexOps::ensureIndex);
 	log.info("MongoDB Indices ensured.");
     }

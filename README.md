@@ -14,6 +14,12 @@ An in-progress comprehensive health and symptom tracker.
 
 ## Low Level Design
 
+### Sequence Diagram
+Below is a sequence diagram of a typical request flow in the application.
+
+![Typical Sequence Diagram](docs/assets/images/TypicalFlowSequence.png)
+
+
 ### Stack Used
 
 1. **Methodology**: Behaviour Driven Development BDD using Cucumber 4.7
@@ -33,25 +39,24 @@ An in-progress comprehensive health and symptom tracker.
 
 ### API Summary
 
-| #  | Layer | Component                  | Host      | Port | BaseURL                  | API Documentation                      |
-|----|-------|----------------------------|-----------|------|------------------------  |----------------------------------------|
-| 1  | UI    | Sinthoma Web               | localhost | 8093 | /sinthoma                |                                        |
-| 2  | UI    | Sinthoma App               |           |      |                          |                                        |
-| 3  | BFF   | Dashboard BFF              |           | 8094 | /sinthoma/dashboard-bff  |                                        |
-| 4  | BFF   | Daily Tracker BFF          |           |      |                          |                                        |
-| 5  | BFF   | Stats Reports BFF          |           |      |                          |                                        |
-| 6  | CORE  | User Manager API           | localhost | 8092 | /sinthoma/user-manager   | /sinthoma/user-manager/swagger-ui.html |
-| 7  | CORE  | Symptom Manager API        |           |      |                          |                                        |
-| 8  | CORE  | Appointment Manager API    |           |      |                          |                                        |
-| 9  | CORE  | Medication Manager API     |           |      |                          |                                        |
-| 10 | CORE  | Food Nutrition Manager API |           |      |                          |                                        |
-| 11 | CORE  | Report Manager API         |           |      |                          |                                        |
-| 12 | CORE  | Notification Manager API   |           |      |                          |                                        |
-| 13 | PROXY | Weather Proxy API          |           |      |                          |                                        |
-| 14 | PROXY | Email Proxy API            |           |      |                          |                                        |
-| 15 | DB    | Mongo DB                   | localhost | 8091 | -                        |                                        |
-| 16 | DB    | Mongo DB Express           | localhost | 8090 | /db/sinthoma             |                                        |
-| 17 | CORE  | Auth Service               | localhost | 8095 | /sinthoma/auth           |                                        |
+| #  | Layer | Component                  | Host      | Port | BaseURL                | API Documentation                      |
+|----|-------|----------------------------|-----------|------|------------------------|----------------------------------------|
+| 1  | UI    | Sinthoma Web               | localhost | 8093 | /sinthoma              |                                        |
+| 2  | UI    | Sinthoma App               |           |      |                        |                                        |
+| 3  | BFF   | Dashboard BFF              |           |      |                        |                                        |
+| 4  | BFF   | Daily Tracker BFF          |           |      |                        |                                        |
+| 5  | BFF   | Stats Reports BFF          |           |      |                        |                                        |
+| 6  | CORE  | User Manager API           | localhost | 8092 | /sinthoma/user-manager | /sinthoma/user-manager/swagger-ui.html |
+| 7  | CORE  | Symptom Manager API        |           |      |                        |                                        |
+| 8  | CORE  | Appointment Manager API    |           |      |                        |                                        |
+| 9  | CORE  | Medication Manager API     |           |      |                        |                                        |
+| 10 | CORE  | Food Nutrition Manager API |           |      |                        |                                        |
+| 11 | CORE  | Report Manager API         |           |      |                        |                                        |
+| 12 | CORE  | Notification Manager API   |           |      |                        |                                        |
+| 13 | PROXY | Weather Proxy API          |           |      |                        |                                        |
+| 14 | PROXY | Email Proxy API            |           |      |                        |                                        |
+| 15 | DB    | Mongo DB                   | localhost | 8091 | -                      |                                        |
+| 16 | DB    | Mongo DB Express           | localhost | 8090 | /db/sinthoma           |                                        |
 
 ## Status Summary
 | #  | Layer | Component                  | Status      | Planned | Designed    | Developed   | Tested | Released |

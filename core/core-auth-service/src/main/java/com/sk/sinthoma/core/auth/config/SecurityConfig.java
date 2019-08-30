@@ -1,3 +1,8 @@
+/**
+ * SecurityConfig.java - core-auth-service
+ * Copyright 2019 Shishir Kumar
+ * Licensed under the GNU Lesser General Public License v3.0
+ */
 package com.sk.sinthoma.core.auth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,30 +25,41 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     JwtTokenProvider jwtTokenProvider;
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.springframework.security.config.annotation.web.configuration.
+     * WebSecurityConfigurerAdapter#authenticationManagerBean()
+     */
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
+	return super.authenticationManagerBean();
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.springframework.security.config.annotation.web.configuration.
+     * WebSecurityConfigurerAdapter#configure(org.springframework.security.config.
+     * annotation.web.builders.HttpSecurity)
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-            .httpBasic().disable()
-            .csrf().disable()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-                .authorizeRequests()
-                .antMatchers("/*").permitAll()
-                .antMatchers("/sinthoma/auth/signin").permitAll()
-                .antMatchers(HttpMethod.POST, "/auth/user/**").hasRole("USER")
-                .anyRequest().authenticated()
-            .and()
-            .apply(new JwtSecurityConfigurer(jwtTokenProvider));
+	http.httpBasic().disable().csrf().disable().sessionManagement()
+		.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests().antMatchers("/*")
+		.permitAll().antMatchers("/sinthoma/auth/signin").permitAll()
+		.antMatchers(HttpMethod.POST, "/auth/user/**").hasRole("USER").anyRequest().authenticated().and()
+		.apply(new JwtSecurityConfigurer(jwtTokenProvider));
     }
 
+    /**
+     * Password encoder.
+     *
+     * @return the password encoder
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+	return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 }

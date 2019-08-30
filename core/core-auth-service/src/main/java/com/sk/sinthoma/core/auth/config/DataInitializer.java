@@ -1,3 +1,8 @@
+/**
+ * DataInitializer.java - core-auth-service
+ * Copyright 2019 Shishir Kumar
+ * Licensed under the GNU Lesser General Public License v3.0
+ */
 package com.sk.sinthoma.core.auth.config;
 
 import java.util.Arrays;
@@ -22,13 +27,18 @@ public class DataInitializer implements CommandLineRunner {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.springframework.boot.CommandLineRunner#run(java.lang.String[])
+     */
     @Override
     public void run(String... args) throws Exception {
-	log.info("Initializing users auth data.");
+	log.info("Initializing userService auth data.");
 	if (!userService.findByUsername("john.doe").isPresent()) {
 	    userService.saveNewUser(User.builder().username("john.doe").emailId("john.doe@mail.com")
 		    .isAccountNonExpired(true).isAccountNonLocked(true).isCredentialsNonExpired(true).isEnabled(true)
-		    .password(this.passwordEncoder.encode("password")).roles(Arrays.asList("ROLE_USER")).build());
+		    .password(passwordEncoder.encode("password")).roles(Arrays.asList("ROLE_USER")).build());
 	}
 	log.info("Users auth data initialized.");
     }

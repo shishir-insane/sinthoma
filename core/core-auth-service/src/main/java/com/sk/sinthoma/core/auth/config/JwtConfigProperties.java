@@ -1,4 +1,5 @@
 package com.sk.sinthoma.core.auth.config;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import lombok.Data;
@@ -7,8 +8,8 @@ import lombok.Data;
 @Data
 public class JwtConfigProperties {
 
-	private String secretKey = "J5JC9dHp5K";
+    private String secretKey = "J5JC9dHp5K";
 
-	//validity in milliseconds
-	private long validityInMs = 3600000; // 1h
+    // validity in milliseconds
+    private long validityInMs = 3600000; // 1h
 }

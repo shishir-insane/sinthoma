@@ -1,4 +1,10 @@
+/**
+ * JwtTokenAuthenticationFilter.java - core-auth-service
+ * Copyright 2019 Shishir Kumar
+ * Licensed under the GNU Lesser General Public License v3.0
+ */
 package com.sk.sinthoma.core.auth.jwt;
+
 import java.io.IOException;
 
 import javax.servlet.FilterChain;
@@ -13,25 +19,36 @@ import org.springframework.web.filter.GenericFilterBean;
 
 public class JwtTokenAuthenticationFilter extends GenericFilterBean {
 
-    private JwtTokenProvider jwtTokenProvider;
+    private final JwtTokenProvider jwtTokenProvider;
 
+    /**
+     * Instantiates a new jwt token authentication filter.
+     *
+     * @param jwtTokenProvider the jwt token provider
+     */
     public JwtTokenAuthenticationFilter(JwtTokenProvider jwtTokenProvider) {
-        this.jwtTokenProvider = jwtTokenProvider;
+	this.jwtTokenProvider = jwtTokenProvider;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest,
+     * javax.servlet.ServletResponse, javax.servlet.FilterChain)
+     */
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain)
-        throws IOException, ServletException {
+	    throws IOException, ServletException {
 
-        String token = jwtTokenProvider.resolveToken((HttpServletRequest) req);
-        if (token != null && jwtTokenProvider.validateToken(token)) {
-            Authentication auth = jwtTokenProvider.getAuthentication(token);
+	final String token = jwtTokenProvider.resolveToken((HttpServletRequest) req);
+	if ((token != null) && jwtTokenProvider.validateToken(token)) {
+	    final Authentication auth = jwtTokenProvider.getAuthentication(token);
 
-            if (auth != null) {
-                SecurityContextHolder.getContext().setAuthentication(auth);
-            }
-        }
-        filterChain.doFilter(req, res);
+	    if (auth != null) {
+		SecurityContextHolder.getContext().setAuthentication(auth);
+	    }
+	}
+	filterChain.doFilter(req, res);
     }
 
 }

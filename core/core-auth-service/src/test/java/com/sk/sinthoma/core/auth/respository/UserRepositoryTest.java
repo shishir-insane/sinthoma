@@ -1,17 +1,7 @@
 /**
- * UserRepositoryTest.java
- * user-manager
+ * UserRepositoryTest.java - core-auth-service
  * Copyright 2019 Shishir Kumar
- *
  * Licensed under the GNU Lesser General Public License v3.0
- * Permissions of this license are conditioned on making available complete
- * source code of licensed works and modifications under the same license
- * or the GNU GPLv3. Copyright and license notices must be preserved.
- *
- * Contributors provide an express grant of patent rights. However, a larger
- * work using the licensed work through interfaces provided by the licensed
- * work may be distributed under different terms and without source code for
- * the larger work.
  */
 package com.sk.sinthoma.core.auth.respository;
 
@@ -39,11 +29,17 @@ public class UserRepositoryTest {
 
     private static final String JANE_DOE = "jane.doe";
 
+    /**
+     * Inits the.
+     */
     @BeforeEach
     public void init() {
 	userAuthRepository.save(User.builder().username(JANE_DOE).build());
     }
 
+    /**
+     * Test find by username not nul result.
+     */
     @Test
     public void testFindByUsernameNotNulResult() {
 	final Optional<User> users = userAuthRepository.findByUsername(JANE_DOE);
@@ -51,6 +47,9 @@ public class UserRepositoryTest {
 	assertThat(users.get().getUsername()).isEqualTo(JANE_DOE);
     }
 
+    /**
+     * Destroy.
+     */
     @AfterEach
     public void destroy() {
 	userAuthRepository.deleteAll();

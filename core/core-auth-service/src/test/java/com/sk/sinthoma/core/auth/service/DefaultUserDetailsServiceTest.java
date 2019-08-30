@@ -1,3 +1,11 @@
+/**
+ * DefaultUserDetailsServiceTest.java
+ * core-auth-service
+ * Copyright 2019 Shishir Kumar
+ * Licensed under the GNU Lesser General Public License v3.0
+ * 
+ * 
+ */
 package com.sk.sinthoma.core.auth.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,7 +19,6 @@ import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -35,6 +42,9 @@ public class DefaultUserDetailsServiceTest {
 
     private User user = null;
 
+    /**
+     * Inits the.
+     */
     @BeforeEach
     public void init() {
 	user = User.builder().username(JOHN_DOE).password(PASSWORD).build();
@@ -42,13 +52,19 @@ public class DefaultUserDetailsServiceTest {
 	when(userAuthRepository.save(user)).thenReturn(user);
     }
 
+    /**
+     * Test load user by username with valid username.
+     */
     @Test
     public void testLoadUserByUsernameWithValidUsername() {
-	User user = userService.loadUserByUsername(JOHN_DOE);
+	final User user = userService.loadUserByUsername(JOHN_DOE);
 	assertNotNull(user);
 	assertEquals(JOHN_DOE, user.getUsername());
     }
 
+    /**
+     * Test load user by username with empty username.
+     */
     @Test
     public void testLoadUserByUsernameWithEmptyUsername() {
 	assertThrows(IllegalArgumentException.class, () -> {
@@ -56,6 +72,9 @@ public class DefaultUserDetailsServiceTest {
 	});
     }
 
+    /**
+     * Test load user by username with invalid username.
+     */
     @Test
     public void testLoadUserByUsernameWithInvalidUsername() {
 	assertThrows(UsernameNotFoundException.class, () -> {
@@ -63,13 +82,19 @@ public class DefaultUserDetailsServiceTest {
 	});
     }
 
+    /**
+     * Test find by username with valid username.
+     */
     @Test
     public void testFindByUsernameWithValidUsername() {
-	Optional<User> user = userService.findByUsername(JOHN_DOE);
+	final Optional<User> user = userService.findByUsername(JOHN_DOE);
 	assertThat(user).isNotEmpty();
 	assertThat(JOHN_DOE).isEqualTo(user.get().getUsername());
     }
 
+    /**
+     * Test find by username with empty username.
+     */
     @Test
     public void testFindByUsernameWithEmptyUsername() {
 	assertThrows(IllegalArgumentException.class, () -> {
@@ -77,19 +102,28 @@ public class DefaultUserDetailsServiceTest {
 	});
     }
 
+    /**
+     * Test find by username with invalid username.
+     */
     @Test
     public void testFindByUsernameWithInvalidUsername() {
-	Optional<User> user = userService.findByUsername(INVALID_USER);
+	final Optional<User> user = userService.findByUsername(INVALID_USER);
 	assertThat(user).isEmpty();
     }
 
+    /**
+     * Test save new user with valid user.
+     */
     @Test
     public void testSaveNewUserWithValidUser() {
-	User responseUser = userService.saveNewUser(user);
+	final User responseUser = userService.saveNewUser(user);
 	assertNotNull(responseUser);
 	assertThat(JOHN_DOE).isEqualTo(responseUser.getUsername());
     }
 
+    /**
+     * Test save new user with empty user name.
+     */
     @Test
     public void testSaveNewUserWithEmptyUserName() {
 	assertThrows(IllegalArgumentException.class, () -> {
@@ -97,6 +131,9 @@ public class DefaultUserDetailsServiceTest {
 	});
     }
 
+    /**
+     * Test save new user with empty password.
+     */
     @Test
     public void testSaveNewUserWithEmptyPassword() {
 	assertThrows(IllegalArgumentException.class, () -> {

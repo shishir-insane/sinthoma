@@ -26,7 +26,7 @@
 		<spring-cloud.version>Hoxton.M2</spring-cloud.version>
 		<org.aspectj.aspectweaver.version>1.9.4</org.aspectj.aspectweaver.version>
 		<io.jsonwebtoken.version>0.9.1</io.jsonwebtoken.version>
-		<com.google.guava>28.0-jre</com.google.guava>
+		<com.google.guava>29.0-jre</com.google.guava>
 		<maven.surefire.version>2.19.1</maven.surefire.version>
 		<maven.test.skip>false</maven.test.skip>
 	</properties>
